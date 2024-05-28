@@ -11,6 +11,8 @@ local DeleteMob = {
             Name = false;
             Distance = false;
             Health = false;
+            Ping = false;
+            Device = false; 
             TeamCheck = false;
             HealthType = "Bar";
             BoxColor = Color3.fromRGB(19, 0, 255);
@@ -120,6 +122,10 @@ local function ApplyGunMods()
     end
 end
 
+ESPElements = {}
+
+ESPElements = {}
+
 local function CreateESP(plr)
     local elements = {}
 
@@ -136,12 +142,21 @@ local function CreateESP(plr)
     elements.tracer.Thickness = 1
     elements.tracer.Transparency = 1
 
-    elements.text = Drawing.new("Text")
-    elements.text.Visible = false
-    elements.text.Color = DeleteMob.ESP.Box.BoxColor
-    elements.text.Size = 16
-    elements.text.Center = true
-    elements.text.Outline = true
+    elements.texts = {
+        Name = Drawing.new("Text"),
+        Distance = Drawing.new("Text"),
+        Health = Drawing.new("Text"),
+        Ping = Drawing.new("Text"),
+        Device = Drawing.new("Text") 
+    }
+
+    for _, text in pairs(elements.texts) do
+        text.Visible = false
+        text.Color = DeleteMob.ESP.Box.BoxColor
+        text.Size = 16
+        text.Center = true
+        text.Outline = true
+    end
 
     ESPElements[plr] = elements
 end
@@ -152,7 +167,9 @@ local function UpdateESP(plr, elements)
         if DeleteMob.ESP.Box.TeamCheck and plr.Team == PLAYER.Team then
             elements.box.Visible = false
             elements.tracer.Visible = false
-            elements.text.Visible = false
+            for _, text in pairs(elements.texts) do
+                text.Visible = false
+            end
             return
         end
 
@@ -183,39 +200,106 @@ local function UpdateESP(plr, elements)
                 elements.tracer.Visible = false
             end
 
-            elements.text.Visible = false
-            local textLines = {}
             local offsetY = 0
 
             if DeleteMob.ESP.Box.Name then
-                table.insert(textLines, plr.Name)
-            end
-            if DeleteMob.ESP.Box.Distance and PLAYER.Character and PLAYER.Character:FindFirstChild("HumanoidRootPart") then
-                local distance = (PLAYER.Character.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
-                table.insert(textLines, string.format("Distance: %d", math.floor(distance)))
-            end
-            if DeleteMob.ESP.Box.Health then
-                table.insert(textLines, string.format("Health: %d", math.floor(humanoid.Health)))
+                elements.texts.Name.Text = tostring(plr.Name)
+                elements.texts.Name.Position = Vector2.new(hrpPosition.X, hrpPosition.Y - boxSize.Y / 2 - 16 + offsetY)
+                elements.texts.Name.Visible = true
+                offsetY = offsetY + 15
+            else
+                elements.texts.Name.Visible = false
             end
 
-            for i, line in ipairs(textLines) do
-                elements.text.Position = Vector2.new(hrpPosition.X, hrpPosition.Y - boxSize.Y / 2 - 16 + offsetY)
-                elements.text.Text = line
-                elements.text.Visible = true
+            if DeleteMob.ESP.Box.Distance and PLAYER.Character and PLAYER.Character:FindFirstChild("HumanoidRootPart") then
+                local distance = (PLAYER.Character.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
+                elements.texts.Distance.Text = string.format("Distance: %d", math.floor(distance))
+                elements.texts.Distance.Position = Vector2.new(hrpPosition.X, hrpPosition.Y - boxSize.Y / 2 - 16 + offsetY)
+                elements.texts.Distance.Visible = true
                 offsetY = offsetY + 15
+            else
+                elements.texts.Distance.Visible = false
             end
-            elements.text.Color = DeleteMob.ESP.Box.BoxColor
+
+            if DeleteMob.ESP.Box.Health then
+                elements.texts.Health.Text = string.format("Health: %d", math.floor(humanoid.Health))
+                elements.texts.Health.Position = Vector2.new(hrpPosition.X, hrpPosition.Y - boxSize.Y / 2 - 16 + offsetY)
+                elements.texts.Health.Visible = true
+                offsetY = offsetY + 15
+            else
+                elements.texts.Health.Visible = false
+            end
+
+            if DeleteMob.ESP.Ping then
+                elements.texts.Ping.Text = string.format("Ping: %d", math.floor(plr.Ping.Value))
+                elements.texts.Ping.Position = Vector2.new(hrpPosition.X, hrpPosition.Y - boxSize.Y / 2 - 16 + offsetY)
+                elements.texts.Ping.Visible = true
+                offsetY = offsetY + 15
+            else
+                elements.texts.Ping.Visible = false
+            end
+
+            if DeleteMob.ESP.Device then
+                elements.texts.Device.Text = string.format("Device: %s", tostring(plr.Status.InputDevice.Value))
+                elements.texts.Device.Position = Vector2.new(hrpPosition.X, hrpPosition.Y - boxSize.Y / 2 - 16 + offsetY)
+                elements.texts.Device.Visible = true
+                offsetY = offsetY + 15
+            else
+                elements.texts.Device.Visible = false
+            end
+
+            for _, text in pairs(elements.texts) do
+                text.Color = DeleteMob.ESP.Box.BoxColor
+            end
         else
             elements.box.Visible = false
             elements.tracer.Visible = false
-            elements.text.Visible = false
+            for _, text in pairs(elements.texts) do
+                text.Visible = false
+            end
         end
     else
         elements.box.Visible = false
         elements.tracer.Visible = false
-        elements.text.Visible = false
+        for _, text in pairs(elements.texts) do
+            text.Visible = false
+        end
     end
 end
+
+for _, player in pairs(game.Players:GetPlayers()) do
+    if player ~= PLAYER then
+        CreateESP(player)
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    if player ~= PLAYER then
+        CreateESP(player)
+    end
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+    if ESPElements[player] then
+        ESPElements[player].box:Remove()
+        ESPElements[player].tracer:Remove()
+        for _, text in pairs(ESPElements[player].texts) do
+            text:Remove()
+        end
+        ESPElements[player] = nil
+    end
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    for player, elements in pairs(ESPElements) do
+        if player ~= PLAYER then
+            UpdateESP(player, elements)
+        end
+    end
+end)
+
+
+--------------------------
 
 for _, player in pairs(game.Players:GetPlayers()) do
     if player ~= PLAYER then
@@ -490,7 +574,6 @@ end)
 
 
 
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -507,13 +590,13 @@ getgenv().AirHub = {}
 
 --// Load Modules
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/AirHub/main/Modules/Aimbot.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/main/Important/Aimbot%20Module%20Z3US%20V2.lua?token=GHSAT0AAAAAACH7S7PAABEUGWQIFYSU2QE2ZSV7B2A"))()
 
 --// Variables
 
 local Library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)() -- Pepsi's UI Library
 local Aimbot, WallHack = getgenv().AirHub.Aimbot, getgenv().AirHub.WallHack
-local Parts, Fonts, TracersType = {"Head", "HumanoidRootPart", "Torso", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "LeftHand", "RightHand", "LeftLowerArm", "RightLowerArm", "LeftUpperArm", "RightUpperArm", "LeftFoot", "LeftLowerLeg", "UpperTorso", "LeftUpperLeg", "RightFoot", "RightLowerLeg", "LowerTorso", "RightUpperLeg"}, {"UI", "System", "Plex", "Monospace"}, {"Bottom", "Center", "Mouse"}
+local Parts, Fonts, TracersType = {"Head", "HumanoidRootPart"}, {"UI", "System", "Plex", "Monospace"}, {"Bottom", "Center", "Mouse"}
 
 --// Frame
 
@@ -537,33 +620,34 @@ local MainFrame = Library:CreateWindow({
 --// Tabs
 
 local AimbotTab = MainFrame:CreateTab({
-	Name = "Combat"
+	Name = "Combat    "
 })
 
 local VisualsTab = MainFrame:CreateTab({
-	Name = "Visuals"
+	Name = "Visuals    "
 })
 
 local WeaponsTab = MainFrame:CreateTab({
-    Name = "WeaponsMods"
-})
-
-local PlayerTab = MainFrame:CreateTab({
-    Name = "PlayerMods"
+    Name = "Mods    "
 })
 
 local FunctionsTab = MainFrame:CreateTab({
-	Name = "Misc"
+	Name = "Misc    "
 })
 
 --// Aimbot Sections
 
 local Values = AimbotTab:CreateSection({
-	Name = "Values"
+	Name = "Aimbot"
 })
 
 local Checks = AimbotTab:CreateSection({
-	Name = "Checks"
+	Name = "Aimbot Checks",
+    Side = "Right"
+})
+
+local Rage = AimbotTab:CreateSection({
+	Name = "Rage",
 })
 
 
@@ -587,6 +671,18 @@ local WallHackChecks = VisualsTab:CreateSection({
 local BoxesSettings = VisualsTab:CreateSection({
 	Name = "ESP",
     Side = "Left"
+})
+
+--// Mods Sections
+
+local Weaponsmods = WeaponsTab:CreateSection({
+    Name = "Weapons mods",
+    Side = "Left"
+})
+
+local Playermods = WeaponsTab:CreateSection({
+    Name = "Player mods",
+    Side = "Right"
 })
 
 
@@ -709,6 +805,155 @@ FOV_Values:AddSlider({
 	Max = 1000
 }).Default = Aimbot.FOVSettings.Amount
 
+
+--//Rage
+
+Rage:AddButton({
+    Name = "Hitbox extender",
+    Callback = function()
+        function getplrsname()
+            for i,v in pairs(game:GetChildren()) do
+                if v.ClassName == "Players" then
+                    return v.Name
+                end
+            end
+        end
+        local players = getplrsname()
+        local plr = game[players].LocalPlayer
+        coroutine.resume(coroutine.create(function()
+            while  wait(1) do
+                coroutine.resume(coroutine.create(function()
+                    for _,v in pairs(game[players]:GetPlayers()) do
+                        if v.Name ~= plr.Name and v.Character then
+                            v.Character.RightUpperLeg.CanCollide = false
+                            v.Character.RightUpperLeg.Transparency = 0.9
+                            v.Character.RightUpperLeg.Size = Vector3.new(22,22,22)
+                            
+                            v.Character.LeftUpperLeg.CanCollide = false
+                            v.Character.LeftUpperLeg.Transparency = 0.9
+                            v.Character.LeftUpperLeg.Size = Vector3.new(22,22,22)
+                            
+                            v.Character.HeadHB.CanCollide = false
+                            v.Character.HeadHB.Transparency = 0.9
+                            v.Character.HeadHB.Size = Vector3.new(22,22,22)
+                            
+                            v.Character.HumanoidRootPart.CanCollide = false
+                            v.Character.HumanoidRootPart.Transparency = 0.9
+                            v.Character.HumanoidRootPart.Size = Vector3.new(22,22,22)
+                        end
+                    end
+                end))
+            end
+        end))
+    end,
+})
+
+-- kill all
+
+Rage:AddButton({
+    Name = "Kill all (toggle bind: T)",
+    CurrentValue = false,
+    Flag = "Kill all (toggle bind: T)",
+    Callback = function(s)
+        Rayfield:Notify({
+			Title = "Z3US | Notification",
+			Content = "Recommended with all gunmods on!",
+			Duration = 20,
+			Image = 11745872910,
+			Actions = { -- Notification Buttons
+				Ignore = {
+					Name = "Close",
+					Callback = function()
+					end
+				},
+			},
+		})
+        -- Get required services and variables
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+        local Team = LocalPlayer.Team
+        local TeamCheckEnabled = true -- Set to true to exclude teammates
+        local TeleportDistance = 6 -- Initial teleport distance
+        local Teleporting = false -- Variable to track if teleporting is active
+        local Initialized = false -- Flag to track if the script has been initialized
+
+        -- Function to check if a player is an enemy
+        local function isEnemy(player)
+            return TeamCheckEnabled and player.Team ~= Team
+        end
+
+        -- Function to find the nearest enemy
+        local function findNearestEnemy()
+            local nearestEnemy = nil
+            local nearestDistance = math.huge
+
+            -- Loop through all players
+            for _, player in ipairs(Players:GetPlayers()) do
+                -- Check if the player is an enemy and alive
+                if isEnemy(player) and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    -- Calculate distance between local player and enemy
+                    local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).magnitude
+
+                    -- Update nearest enemy if closer than previous
+                    if distance < nearestDistance then
+                        nearestEnemy = player
+                        nearestDistance = distance
+                    end
+                end
+            end
+
+            return nearestEnemy, nearestDistance
+        end
+
+        -- Function to teleport behind the nearest enemy
+        local function teleportBehindEnemy()
+            local enemy, distance = findNearestEnemy()
+
+            if enemy then
+                -- Calculate teleportation destination behind enemy and above their head
+                local enemyPosition = enemy.Character.HumanoidRootPart.Position
+                local direction = (LocalPlayer.Character.HumanoidRootPart.Position - enemyPosition).unit
+                local teleportDestination = enemyPosition + direction * TeleportDistance + Vector3.new(0, 0, 0) -- Teleport 10 studs above the enemy
+
+                -- Teleport local player closer if the distance is less than TeleportDistance
+                if distance < TeleportDistance then
+                    LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(enemyPosition))
+                else
+                    LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportDestination))
+                end
+            else
+                print("No enemy found.")
+            end
+        end
+
+        -- Function to handle key press to toggle teleporting
+        local function onKeyPress(key)
+            if key.KeyCode == Enum.KeyCode.T then
+                -- Toggle teleporting status
+                Teleporting = not Teleporting
+                -- If teleporting is active, start continuous teleportation
+                if Teleporting then
+                    while Teleporting do
+                        teleportBehindEnemy()
+                        wait()
+                    end
+                end
+            end
+        end
+
+        -- Connect key press event
+        game:GetService("UserInputService").InputBegan:Connect(function(input)
+            -- Check if the key pressed is "T"
+            if input.KeyCode == Enum.KeyCode.T then
+                onKeyPress(input)
+            end
+        end)
+
+        -- Set the script as initialized
+        Initialized = true
+    end
+})
+
 --// FOV Settings Appearance
 
 FOV_Appearance:AddColorpicker({
@@ -772,7 +1017,23 @@ BoxesSettings:AddToggle({
 })
 
 BoxesSettings:AddToggle({
-	Name = "Enabled",
+    Name = "Ping ESP",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.ESP.Ping = Value
+    end,
+})
+
+BoxesSettings:AddToggle({
+    Name = "Device ESP",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.ESP.Device = Value
+    end,
+})
+
+BoxesSettings:AddToggle({
+	Name = "Tracers",
     Value = false,
     Callback = function(Value)
         DeleteMob.ESP.Tracers.Enabled = Value
@@ -780,7 +1041,178 @@ BoxesSettings:AddToggle({
 })
 
 
---// Functions / Functions
+--// Mods
+
+Playermods:AddToggle({
+    Name = "CFrame Fly",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.Player.Fly = Value
+        if Value then
+            startFly()
+        else
+            stopFly()
+        end
+    end,
+})
+
+Playermods:AddSlider({
+    Name = "Fly Speed",
+    Min = 5,
+	Max = 100,
+    Value = DeleteMob.Player.FlySpeedValue,
+    Callback = function(Value)
+        DeleteMob.Player.FlySpeedValue = Value
+    end,
+})
+
+Playermods:AddToggle({
+    Name = "WalkSpeed",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.Player.WalkSpeed = Value
+        if Value then
+            setWalkSpeed()
+            walkSpeedConnection = game:GetService("RunService").RenderStepped:Connect(setWalkSpeed)
+        elseif walkSpeedConnection then
+            walkSpeedConnection:Disconnect()
+            walkSpeedConnection = nil
+        end
+    end,
+})
+
+Playermods:AddSlider({
+    Name = "Set WalkSpeed",
+    Value = DeleteMob.Player.WalkSpeedValue,
+    Min = 0,
+	Max = 100,
+    Callback = function(Value)
+        DeleteMob.Player.WalkSpeedValue = Value
+    end,
+})
+
+Playermods:AddToggle({
+    Name = "Infinite Jump",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.Player.InfiniteJump = Value
+    end,
+})
+
+Playermods:AddToggle({
+    Name = "Hold Space to Keep Jumping",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.Player.HoldJump = Value
+    end,
+})
+
+Playermods:AddToggle({
+    Name = "Noclip",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.Player.Noclip = Value
+        if Value then
+            noclipConnection = game:GetService("RunService").Stepped:Connect(function()
+                for _, v in pairs(PLAYER.Character:GetDescendants()) do
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false
+                    end
+                end
+            end)
+        else
+            if noclipConnection then
+                noclipConnection:Disconnect()
+                noclipConnection = nil
+            end
+            for _, v in pairs(PLAYER.Character:GetDescendants()) do
+                if v:IsA("BasePart") then
+                    v.CanCollide = true
+                end
+            end
+        end
+    end,
+})
+
+Weaponsmods:AddToggle({
+    Name = "Rapid Fire",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.Player.FireRate = Value
+        setFireRate(Value)
+    end,
+})
+
+Weaponsmods:AddToggle({
+    Name = "Always Auto",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.GunMods.AlwaysAuto = Value
+        ApplyGunMods()
+    end,
+})
+
+Weaponsmods:AddToggle({
+    Name = "No Spread",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.GunMods.NoSpread = Value
+        ApplyGunMods()
+    end,
+})
+
+Weaponsmods:AddToggle({
+    Name = "No Recoil",
+    Value = false,
+    Callback = function(Value)
+        DeleteMob.GunMods.NoRecoil = Value
+        ApplyGunMods()
+    end,
+})
+
+Weaponsmods:AddButton({
+    Name = "Infinite Ammo",
+    Callback = function()
+        local Holder = Instance.new("Folder", game.CoreGui)
+        Holder.Name = "Infinite Ammo"
+
+        while wait() do
+            local playerGui = game:GetService("Players").LocalPlayer.PlayerGui
+            if playerGui.GUI.Client.Variables.ammocount then
+                playerGui.GUI.Client.Variables.ammocount.Value = 999
+            end
+            if playerGui.GUI.Client.Variables.ammocount2 then
+                playerGui.GUI.Client.Variables.ammocount2.Value = 999
+            end
+        end
+    end
+})
+
+Weaponsmods:AddButton({
+    Name = "Rainbow Gun",
+    Callback = function()
+        local Holder = Instance.new("Folder", game.CoreGui)
+        Holder.Name = "Rainbow Gun"
+
+        local c = 1
+        function zigzag(X)
+            return math.acos(math.cos(X * math.pi)) / math.pi
+        end
+        
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if game.Workspace.CurrentCamera:FindFirstChild('Arms') then
+                for i,v in pairs(game.Workspace.CurrentCamera.Arms:GetDescendants()) do
+                    if v:IsA('MeshPart') then
+                        v.Color = Color3.fromHSV(zigzag(c), 1, 1)
+                        c = c + .0001
+                    end
+                end
+            end
+        end)
+    end
+})
+
+--// Functions
 
 FunctionsSection:AddButton({
 	Name = "Reset Settings",
@@ -825,3 +1257,4 @@ ScriptsSection:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/D8rkX/D8rk-Hub/main/Arsenal%20Scripts/Hubs-Extras/Melee%20Hub%20V1.lua", true))()
     end,
 })
+
