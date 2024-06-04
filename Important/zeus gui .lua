@@ -286,6 +286,39 @@ local function getObjGen()
                 UIAspectRatioConstraint_17 = Instance.new("UIAspectRatioConstraint")
             }
 
+                local guiVisible = true
+
+                local function toggleGUIVisibility()
+                    if guiVisible then
+                        -- Hide the GUI
+                        for _, obj in pairs(objGen) do
+                            if obj:IsA("GuiObject") then
+                                obj.Visible = false
+                            end
+                        end
+                        guiVisible = false
+                    else
+                        -- Show the GUI
+                        for _, obj in pairs(objGen) do
+                            if obj:IsA("GuiObject") then
+                                obj.Visible = true
+                            end
+                        end
+                        guiVisible = true
+                    end
+                end
+
+                local function handleKeyDown(inputObject, gameProcessedEvent)
+                    if inputObject.KeyCode == Enum.KeyCode.Insert then
+                        toggleGUIVisibility()
+                    end
+                end
+
+                game:GetService("UserInputService").InputBegan:Connect(handleKeyDown)
+
+                return objGen
+            end
+
             --Properties:
 
             Gui.UIObjects.Name = "UIObjects"
