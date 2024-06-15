@@ -752,8 +752,8 @@ function library:Introduction()
     xsxLogo.Position = UDim2.new(0.5, 0, 0.5, 0)
     xsxLogo.Size = UDim2.new(0, 448, 0, 150)
     xsxLogo.Visible = true
-    xsxLogo.Image = "http://www.roblox.com/asset/?id=9365068051"
-    xsxLogo.ImageColor3 = Color3.fromRGB(159, 115, 255)
+    xsxLogo.Image = "https://i.imgur.com/XVZ23Hp.png"
+    xsxLogo.ImageColor3 = Color3.fromRGB(19,0,255)
     xsxLogo.ImageTransparency = 1
     
     hashLogo.Name = "hashLogo"
@@ -764,8 +764,8 @@ function library:Introduction()
     hashLogo.Position = UDim2.new(0.5, 0, 0.5, 0)
     hashLogo.Size = UDim2.new(0, 150, 0, 150)
     hashLogo.Visible = true
-    hashLogo.Image = "http://www.roblox.com/asset/?id=9365069861"
-    hashLogo.ImageColor3 = Color3.fromRGB(159, 115, 255)
+    hashLogo.Image = "https://i.imgur.com/XVZ23Hp.png"
+    hashLogo.ImageColor3 = Color3.fromRGB(19,0,255)
     hashLogo.ImageTransparency = 1
     
     xsx.Name = "Z3US"
