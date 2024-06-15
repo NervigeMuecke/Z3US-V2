@@ -1,3 +1,4 @@
+
 -- / Locals
 local Workspace = game:GetService("Workspace")
 local Player = game:GetService("Players").LocalPlayer
@@ -842,7 +843,7 @@ function library:Init(key)
     end
 
     local title = library.title
-    key = key or Enum.KeyCode.RightAlt
+    key = key or Enum.KeyCode.Insert
 
     local screen = Instance.new("ScreenGui")
     local edge = Instance.new("Frame")
