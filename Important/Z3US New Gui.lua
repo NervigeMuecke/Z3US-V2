@@ -750,7 +750,7 @@ function library:Introduction()
     xsxLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     xsxLogo.BackgroundTransparency = 1.000
     xsxLogo.Position = UDim2.new(0.5, 0, 0.5, 0)
-    xsxLogo.Size = UDim2.new(0, 448, 0, 150)
+    xsxLogo.Size = UDim2.new(0, 100, 0, 150)
     xsxLogo.Visible = true
     xsxLogo.Image = "http://www.roblox.com/asset/?id=5892783507"
     xsxLogo.ImageColor3 = Color3.fromRGB(19,0,255)
@@ -762,9 +762,9 @@ function library:Introduction()
     hashLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     hashLogo.BackgroundTransparency = 1.000
     hashLogo.Position = UDim2.new(0.5, 0, 0.5, 0)
-    hashLogo.Size = UDim2.new(0, 150, 0, 150)
+    hashLogo.Size = UDim2.new(0, 100, 0, 150)
     hashLogo.Visible = true
-    hashLogo.Image = "http://www.roblox.com/asset/?id=5012543246"
+    hashLogo.Image = "http://www.roblox.com/asset/?id=5892783507"
     hashLogo.ImageColor3 = Color3.fromRGB(19,0,255)
     hashLogo.ImageTransparency = 1
     
