@@ -1,4 +1,3 @@
-
 -- / Locals
 local Workspace = game:GetService("Workspace")
 local Player = game:GetService("Players").LocalPlayer
@@ -76,7 +75,7 @@ local library = {
     version = "2.0.2",
     title = title or "xsx " .. tostring(math.random(1,366)),
     fps = 0,
-    rank = "private"
+    rank = "User"
 }
 
 coroutine.wrap(function()
@@ -752,8 +751,8 @@ function library:Introduction()
     xsxLogo.Position = UDim2.new(0.5, 0, 0.5, 0)
     xsxLogo.Size = UDim2.new(0, 448, 0, 150)
     xsxLogo.Visible = true
-    xsxLogo.Image = "http://www.roblox.com/asset/?id=5892783507"
-    xsxLogo.ImageColor3 = Color3.fromRGB(19,0,255)
+    xsxLogo.Image = "http://www.roblox.com/asset/?id=9365068051"
+    xsxLogo.ImageColor3 = Color3.fromRGB(159, 115, 255)
     xsxLogo.ImageTransparency = 1
     
     hashLogo.Name = "hashLogo"
@@ -764,17 +763,17 @@ function library:Introduction()
     hashLogo.Position = UDim2.new(0.5, 0, 0.5, 0)
     hashLogo.Size = UDim2.new(0, 150, 0, 150)
     hashLogo.Visible = true
-    hashLogo.Image = "http://www.roblox.com/asset/?id=5012543246" --359011362
-    hashLogo.ImageColor3 = Color3.fromRGB(19,0,255)
+    hashLogo.Image = "http://www.roblox.com/asset/?id=9365069861"
+    hashLogo.ImageColor3 = Color3.fromRGB(159, 115, 255)
     hashLogo.ImageTransparency = 1
     
-    xsx.Name = "Z3US"
+    xsx.Name = "xsx"
     xsx.Parent = background
     xsx.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     xsx.BackgroundTransparency = 1.000
     xsx.Size = UDim2.new(0, 80, 0, 21)
     xsx.Font = Enum.Font.Code
-    xsx.Text = ""
+    xsx.Text = "powered by xsx"
     xsx.TextColor3 = Color3.fromRGB(124, 124, 124)
     xsx.TextSize = 10.000
     xsx.TextTransparency = 1
@@ -786,7 +785,7 @@ function library:Introduction()
     text.Position = UDim2.new(0.912751675, 0, 0, 0)
     text.Size = UDim2.new(0, 26, 0, 21)
     text.Font = Enum.Font.Code
-    text.Text = ""
+    text.Text = "hash"
     text.TextColor3 = Color3.fromRGB(124, 124, 124)
     text.TextSize = 10.000
     text.TextTransparency = 1
