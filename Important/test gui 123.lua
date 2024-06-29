@@ -1347,7 +1347,7 @@ function initLibrary()
                         Size = UDim2.new(1, 0, 0, 16),
                         BorderColor3 = Color3.fromRGB(22, 22, 22),
                         Position = UDim2.new(0, 0, 1, -16),
-                        BackgroundColor3 = Color3.fromRGB(19, 0, 255),
+                        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                         Parent = toggleSliderHolder
                     })
                     
