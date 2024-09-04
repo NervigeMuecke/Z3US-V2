@@ -104,7 +104,7 @@ end
 
 
 function Library:Window(options)
-    options.text = options.text or "NEVERLOSE"
+    options.text = options.text or "Z3US V3"
 
     local SG = Instance.new("ScreenGui")
     local Body = Instance.new("Frame")
