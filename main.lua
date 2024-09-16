@@ -1,6 +1,4 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
-wait(2)
-
 local GameId = game.PlaceId
 
 local function ExecuteRivals()
