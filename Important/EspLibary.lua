@@ -265,7 +265,7 @@ local function updateEsp()
                     if ESP_SETTINGS.ShowHealth and ESP_SETTINGS.Enabled then
                         esp.healthOutline.Visible = true
                         esp.health.Visible = true
-                        local healthPercentage = player.Character.Humanoid.Name.NRPBS["Health"].Value / player.Character.Name.NRPBS["MaxHealth"].Value
+                        local healthPercentage = Players[player.Character.Name].NRPBS["Health"].Value / Players[player.Character.Name].NRPBS["MaxHealth"].Value
                         esp.healthOutline.From = Vector2.new(boxPosition.X - 6, boxPosition.Y + boxSize.Y)
                         esp.healthOutline.To = Vector2.new(esp.healthOutline.From.X, esp.healthOutline.From.Y - boxSize.Y)
                         esp.health.From = Vector2.new((boxPosition.X - 5), boxPosition.Y + boxSize.Y)
