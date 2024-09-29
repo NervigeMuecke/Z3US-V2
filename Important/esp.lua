@@ -6,6 +6,68 @@ local camera = workspace.CurrentCamera
 
 getgenv().global = getgenv()
 
+
+declare(features, "visuals", {
+	["enabled"] = false,
+	["teamCheck"] = false,
+	["teamColor"] = true,
+	["renderDistance"] = 2000,
+
+	["boxes"] = {
+		["enabled"] = false,
+		["color"] = Color3.fromRGB(19, 0, 255),
+		["outline"] = {
+			["enabled"] = false,
+			["color"] = Color3.fromRGB(0, 0, 0),
+		},
+		["filled"] = {
+			["enabled"] = false,
+		    ["color"] = Color3.fromRGB(19, 0, 255),
+			["transparency"] = 0.25
+		},
+	},
+	["names"] = {
+		["enabled"] = false,
+		["color"] = Color3.fromRGB(19, 0, 255),
+		["outline"] = {
+			["enabled"] = false,
+			["color"] = Color3.fromRGB(0, 0, 0),
+		},
+	},
+	["health"] = {
+		["enabled"] = false,
+		["color"] = Color3.fromRGB(0, 255, 0),
+		["colorLow"] = Color3.fromRGB(255, 0, 0),
+		["outline"] = {
+			["enabled"] = false,
+			["color"] = Color3.fromRGB(0, 0, 0)
+		},
+		["text"] = {
+			["enabled"] = false,
+			["outline"] = {
+				["enabled"] = false,
+			},
+		}
+	},
+	["distance"] = {
+		["enabled"] = false,
+		["color"] = Color3.fromRGB(19, 0, 255),
+		["outline"] = {
+			["enabled"] = false,
+			["color"] = Color3.fromRGB(0, 0, 0),
+		},
+	},
+	["weapon"] = {
+		["enabled"] = false,
+		["color"] = Color3.fromRGB(19, 0, 255),
+		["outline"] = {
+			["enabled"] = false,
+			["color"] = Color3.fromRGB(0, 0, 0),
+		},
+	}
+})
+
+
 function global.declare(self, index, value, check)
 	if self[index] == nil then
 		self[index] = value
@@ -289,65 +351,7 @@ features.toggle = function(self, feature, boolean)
 	end
 end
 
-declare(features, "visuals", {
-	["enabled"] = false,
-	["teamCheck"] = false,
-	["teamColor"] = true,
-	["renderDistance"] = 2000,
-
-	["boxes"] = {
-		["enabled"] = false,
-		["color"] = Color3.fromRGB(19, 0, 255),
-		["outline"] = {
-			["enabled"] = false,
-			["color"] = Color3.fromRGB(0, 0, 0),
-		},
-		["filled"] = {
-			["enabled"] = false,
-		    ["color"] = Color3.fromRGB(19, 0, 255),
-			["transparency"] = 0.25
-		},
-	},
-	["names"] = {
-		["enabled"] = false,
-		["color"] = Color3.fromRGB(19, 0, 255),
-		["outline"] = {
-			["enabled"] = false,
-			["color"] = Color3.fromRGB(0, 0, 0),
-		},
-	},
-	["health"] = {
-		["enabled"] = false,
-		["color"] = Color3.fromRGB(0, 255, 0),
-		["colorLow"] = Color3.fromRGB(255, 0, 0),
-		["outline"] = {
-			["enabled"] = false,
-			["color"] = Color3.fromRGB(0, 0, 0)
-		},
-		["text"] = {
-			["enabled"] = false,
-			["outline"] = {
-				["enabled"] = false,
-			},
-		}
-	},
-	["distance"] = {
-		["enabled"] = false,
-		["color"] = Color3.fromRGB(19, 0, 255),
-		["outline"] = {
-			["enabled"] = false,
-			["color"] = Color3.fromRGB(0, 0, 0),
-		},
-	},
-	["weapon"] = {
-		["enabled"] = false,
-		["color"] = Color3.fromRGB(19, 0, 255),
-		["outline"] = {
-			["enabled"] = false,
-			["color"] = Color3.fromRGB(0, 0, 0),
-		},
-	}
-})
+----------------------------------
 
 for _, player in players:GetPlayers() do
 	if player ~= client and not get("player"):find(player) then
