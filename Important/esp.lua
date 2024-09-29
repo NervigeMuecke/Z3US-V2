@@ -10,7 +10,7 @@ getgenv().global = getgenv()
 declare(features, "visuals", {
 	["enabled"] = false,
 	["teamCheck"] = false,
-	["teamColor"] = true,
+	["teamColor"] = false,
 	["renderDistance"] = 2000,
 
 	["boxes"] = {
