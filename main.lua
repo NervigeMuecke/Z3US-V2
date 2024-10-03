@@ -11,8 +11,6 @@ if accountAge > oneYearInDays then
     player:Kick("You got detected using a main acc, I don't support cheating on main accs. Use an alt >:(")
 end
 
-
-
 local function ExecuteRivals()
     Library:Notify("Z3US has detected you being in Rivals.", 5)
     wait(5)
