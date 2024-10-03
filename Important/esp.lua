@@ -4,12 +4,6 @@ local players = cloneref(game:GetService("Players"))
 local client = players.LocalPlayer
 local camera = workspace.CurrentCamera
 
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local localPlayer = Players.LocalPlayer
-local camera = workspace.CurrentCamera
-local cache = {}
-
 getgenv().global = getgenv()
 
 
@@ -226,13 +220,13 @@ get("player").update = function(self, character, data)
 
 			drawings.name.ZIndex = drawings.box.ZIndex + 1
 
-			local healthPercent = 100 / (Players[player.Character.Name].NRPBS["MaxHealth"].Value / Players[player.Character.Name].NRPBS["Health"].Value)
+			local healthPercent = 100 / (humanoid.MaxHealth / humanoid.Health)
 		
 			drawings.healthOutline.From = Vector2.new(xPosition - 5, yPostion)
 			drawings.healthOutline.To = Vector2.new(xPosition - 5, yPostion + height)
 			drawings.health.From = Vector2.new(xPosition - 5, (yPostion + height) - 1)
 			drawings.health.To = Vector2.new(xPosition - 5, ((drawings.health.From.Y - ((height / 100) * healthPercent))) + 2)
-			drawings.healthText.Text = `[ HP {math.floor(Players[player.Character.Name].NRPBS["Health"].Value)} ]`
+			drawings.healthText.Text = `[ HP {math.floor(humanoid.Health)} ]`
 			drawings.healthText.Size = math.max(math.min(math.abs(11 * scale), 11), 10)
 			drawings.healthText.Position = Vector2.new(drawings.health.To.X - (drawings.healthText.TextBounds.X + 3), (drawings.health.To.Y - (2 / scale)))
 
