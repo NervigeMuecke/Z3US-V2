@@ -4,10 +4,10 @@ local GameId = game.PlaceId
 local RunService = game:GetService("RunService")
 
 local player = game.Players.LocalPlayer
-local accountAge = player.AccountAge
-local oneYearInDays = 365
+local accage = player.AccountAge
+local age = 365
 
-if accountAge > oneYearInDays then
+if accage > age then
     player:Kick("You got detected using a main acc, I don't support cheating on main accs. Use an alt >:(")
 end
 
