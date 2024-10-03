@@ -2,6 +2,20 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violi
 local GameId = game.PlaceId
 
 local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+local function checkAccountAge(player)
+    local currentTime = os.time()
+    local accountCreationTime = player.AccountAge
+    local accountAgeInSeconds = accountCreationTime * 24 * 60 * 60
+    local oneYearInSeconds = 365 * 24 * 60 * 60
+    if accountAgeInSeconds >= oneYearInSeconds then
+        player:Kick("You got detected using a main acc, i dont support cheating on main accs. Use an alt >:(")
+    end
+end
+
+Players.PlayerAdded:Connect(checkAccountAge)
+
 
 local function ExecuteRivals()
     Library:Notify("Z3US has detected you being in Rivals.", 5)
