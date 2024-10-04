@@ -1,9 +1,24 @@
+local function renameServices()
+    local playersClient = game:FindFirstChild("Players - Client")
+    if playersClient then
+        playersClient.Name = "Players"
+    end
+
+    local workspaceClient = game:FindFirstChild("Workspace - Client")
+    if workspaceClient then
+        workspaceClient.Name = "Workspace"
+    end
+end
+
+renameServices()
+wait(1)
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
 local GameId = game.PlaceId
 
 local RunService = game:GetService("RunService")
 
-local player =  game:GetService("Players").LocalPlayer
+local player =  game.Players.LocalPlayer
 local accage = player.AccountAge
 local age = 690
 
