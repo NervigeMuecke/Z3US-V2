@@ -20,7 +20,7 @@ local RunService = game:GetService("RunService")
 
 local player =  game.Players.LocalPlayer
 local accage = player.AccountAge
-local age = 690
+local age = 1000
 
 if accage > age then
     player:Kick("You got detected using a main acc, I don't support cheating on main accs. Use an alt >:(")
