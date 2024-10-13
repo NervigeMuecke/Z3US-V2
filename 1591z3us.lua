@@ -1,4 +1,4 @@
-local function renameServices()
+local function warummacheichdas()
     local playersClient = game:FindFirstChild("Players - Client")
     if playersClient then
         playersClient.Name = "Players"
@@ -10,7 +10,7 @@ local function renameServices()
     end
 end
 
-renameServices()
+warummacheichdas()
 wait(1)
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
