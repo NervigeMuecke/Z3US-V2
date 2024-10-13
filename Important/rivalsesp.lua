@@ -170,22 +170,23 @@ get("player").update = function(self, character, data)
 
 		local visuals = features.visuals
 
-        local function check()
-            local team
-            if visuals.teamCheck then
-                -- Check if the player has a HumanoidRootPart and TeammateLabel
-                local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
-                local teammateLabel = humanoidRootPart and humanoidRootPart:FindFirstChild("TeammateLabel")
-        
-                -- Assuming the TeammateLabel stores the team info and is a value object (like StringValue, BoolValue, etc.)
-                team = teammateLabel and teammateLabel.Value ~= client.Team -- Replace `client.Team` with the appropriate team check if needed
-            else
-                team = true
-            end
-        
-            -- Return whether visuals are enabled, distance is valid, and the team check passes
-            return visuals.enabled and data.distance and data.distance <= visuals.renderDistance and team
-        end
+		local function check()
+			local team
+			if visuals.teamCheck then
+				-- Check if the player has a HumanoidRootPart and TeammateLabel exists under it
+				local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+				local teammateLabel = humanoidRootPart and humanoidRootPart:FindFirstChild("TeammateLabel")
+				
+				-- If TeammateLabel exists, they are on the same team
+				team = not teammateLabel -- If `TeammateLabel` exists, it's false (same team), otherwise true (different team)
+			else
+				team = true
+			end
+		
+			-- Return whether visuals are enabled, distance is valid, and the team check passes
+			return visuals.enabled and data.distance and data.distance <= visuals.renderDistance and team
+		end
+		
         
 
 		local function color(color)
