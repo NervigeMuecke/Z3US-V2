@@ -24,7 +24,7 @@ end
 local function ExecuteFront()
     Library:Notify("Z3US has detected you being in Frontlines.", 5)
     wait(5)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/main/Games/Z3US%20Frontlines%20V1.0.0"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Frontlines"))()
 end
 
 local function ExecuteUniversal()
