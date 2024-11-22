@@ -293,7 +293,7 @@ declare(features, "visuals", {
 	["enabled"] = false,
 	["teamCheck"] = false,
 	["teamColor"] = false,
-	["renderDistance"] = 10000,
+	["renderDistance"] = 10,
 
 	["boxes"] = {
 		["enabled"] = false,
