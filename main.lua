@@ -39,7 +39,7 @@ local function ExecuteGame()
         ExecuteFootball()
     elseif GameId == 286090429 then
         ExecuteArsenal()
-    elseif GameId == 17625359962 or GameId == 6035872082  then
+    elseif GameId == 17625359962 or GameId == 71874690745115  then
         ExecuteRivals()
     elseif GameId == 5938036553 then
         ExecuteFront()
