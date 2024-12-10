@@ -35,7 +35,6 @@ getgenv().AirHub.Aimbot = {
 		Visible = false,
 		Amount = 150,
 		Color = Color3fromRGB(19, 0, 255),
-		LockedColor = getgenv().AirHub.Aimbot.FOVSettings.Color,
 		Transparency = 1,
 		Sides = 60,
 		Thickness = 1,
@@ -123,7 +122,6 @@ local function Load()
 					UserInputService.MouseDeltaSensitivity = 0
 				end
 
-				Environment.FOVCircle.Color = Environment.FOVSettings.LockedColor
 			end
 		end
 	end)
@@ -213,7 +211,6 @@ function Environment.Functions:ResetSettings()
 		Visible = true,
 		Amount = 250,
 		Color = Color3fromRGB(255, 255, 255),
-		LockedColor = Color3fromRGB(255, 0, 0),
 		Transparency = 1,
 		Sides = 60,
 		Thickness = 1,
