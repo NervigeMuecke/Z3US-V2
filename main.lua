@@ -30,7 +30,7 @@ end
 local function ExecuteUniversal()
     Library:Notify("You are not in a supported game, loading universal..", 5)
     wait(5)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/main/Games/Z3US%20UNIVERSAL%20BETA%20V2.2"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Universal.lua"))()
 end
 
 
