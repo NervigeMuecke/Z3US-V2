@@ -18,7 +18,7 @@ end
 local function ExecuteArsenal()
     Library:Notify("Z3US has detected you being in Arsenal.", 5)
     wait(5)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Arsenal%20V3.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Loader%20Arsenal.lua"))()
 end
 
 local function ExecuteFront()
