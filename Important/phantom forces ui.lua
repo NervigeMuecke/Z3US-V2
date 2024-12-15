@@ -191,7 +191,7 @@ local Library = {
 	FontSize = 9;
 	Notifs = {};
 	KeyList = nil;
-	UIKey = Enum.KeyCode.End;
+	UIKey = Enum.KeyCode.Insert;
 	ScreenGUI = nil;
 }
 
