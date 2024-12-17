@@ -191,7 +191,7 @@ local Library = {
 	FontSize = 9;
 	Notifs = {};
 	KeyList = nil;
-	UIKey = Enum.KeyCode.Insert;
+	UIKey = Enum.KeyCode.RightShift;
 	ScreenGUI = nil;
 }
 
