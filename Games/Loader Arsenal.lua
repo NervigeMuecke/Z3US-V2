@@ -159,6 +159,6 @@ do
 	end
 	
 	heartbeat = run_service.Heartbeat:Connect(function()
-		ui_gradient.Rotation += 4;
+		ui_gradient.Rotation += 1;
 	end)
 end
