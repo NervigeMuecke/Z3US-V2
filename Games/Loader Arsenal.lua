@@ -75,8 +75,15 @@ do
 	
 	local ui_gradient = Instance.new("UIGradient", ui_stroke); do
 		ui_gradient.Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0, Color3.fromRGB(19,0,255)),
-			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
+			ColorSequenceKeypoint.new(0, Color3.fromHSV(0, 1, 1)),
+			ColorSequenceKeypoint.new(0.14, Color3.fromHSV(0.14, 1, 1)),
+			ColorSequenceKeypoint.new(0.28, Color3.fromHSV(0.28, 1, 1)),
+			ColorSequenceKeypoint.new(0.42, Color3.fromHSV(0.42, 1, 1)),
+			ColorSequenceKeypoint.new(0.57, Color3.fromHSV(0.57, 1, 1)),
+			ColorSequenceKeypoint.new(0.71, Color3.fromHSV(0.71, 1, 1)),
+			ColorSequenceKeypoint.new(0.85, Color3.fromHSV(0.85, 1, 1)),
+			ColorSequenceKeypoint.new(1, Color3.fromHSV(1, 1, 1))
+			
 		});
 	end
 
@@ -159,6 +166,6 @@ do
 	end
 	
 	heartbeat = run_service.Heartbeat:Connect(function()
-		ui_gradient.Rotation += 1;
+		ui_gradient.Rotation += 0.75;
 	end)
 end
