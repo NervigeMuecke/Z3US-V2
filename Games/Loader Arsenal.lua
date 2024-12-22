@@ -76,7 +76,7 @@ do
 	local ui_gradient = Instance.new("UIGradient", ui_stroke); do
 		ui_gradient.Color = ColorSequence.new({
 			ColorSequenceKeypoint.new(0, Color3.fromHSV(math.random(), 1, 1)),
-			ColorSequenceKeypoint.new(1, Color3.fromHSV(math.random(), 1, 1))
+			ColorSequenceKeypoint.new(1, Color3.fromHSV(math.random(), 1, 1)),
 		});
 	end
 	
@@ -160,6 +160,6 @@ do
 	end
 	
 	heartbeat = run_service.Heartbeat:Connect(function()
-		ui_gradient.Rotation += 1
+		ui_gradient.Rotation += 1;
 	end)
 end
