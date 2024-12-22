@@ -159,7 +159,7 @@ do
 		end
 	end
 	
-	local speed = math.random(0.5, 4)
+	local speed = math.random(1, 4)
 	heartbeat = run_service.Heartbeat:Connect(function()
 		ui_gradient.Rotation += speed
 	end)
