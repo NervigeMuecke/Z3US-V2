@@ -6,7 +6,7 @@ local RunService = game:GetService("RunService")
 local function ExecuteRivals()
     Library:Notify("Z3US has detected you being in Rivals.", 5)
     wait(5)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/main/Games/Z3US%20Rivals.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Zypherion%20Rivals%20Beta.lua'))()
 end
 
 local function ExecuteFootball()
