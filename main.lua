@@ -33,10 +33,18 @@ local function ExecuteUniversal()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Universal.lua"))()
 end
 
+local function ExecuteFish()
+    Library:Notify("Z3US has detected you being in Fish.", 5)
+    wait(5)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Fish.lua"))()
+end
+
 
 local function ExecuteGame()
     if GameId == 16447934574 then 
         ExecuteFootball()
+    elseif GameId == 16732694052 then 
+        ExecuteFish()
     elseif GameId == 286090429 then
         ExecuteArsenal()
     elseif GameId == 17625359962 or GameId == 71874690745115  then
