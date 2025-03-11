@@ -226,7 +226,7 @@ local function loadScript()
         local LoadingAnimation = CreateLoadingAnimation(Frame)
         wait(2)
         LoadingAnimation:Destroy()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/ZYPHERION/refs/heads/main/Games/ZYPHERION%20Arsenal%20Beta.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Loader%20Arsenal.lua"))()
     end)
 
     TextButton_2.MouseButton1Click:Connect(function()
