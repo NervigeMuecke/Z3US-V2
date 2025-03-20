@@ -7,8 +7,8 @@ local core_gui = game:GetService("CoreGui");
 local loader = Instance.new("ScreenGui", core_gui);
 
 local games = {
-	--{ name = "Z3US V3", link = "https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Arsenal%20V3.lua" },
-	{ name = "ZYHPERION Beta", link = "https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Zypherion%20Beta.lua"},
+	{ name = "Z3US V3", link = "https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Arsenal%20V3.lua" },
+	{ name = "ZYHPERION Beta", link = "https://raw.githubusercontent.com/blackowl1231/ZYPHERION/refs/heads/main/Games/ZYPHERION%20Arsenal%20Beta.lua"},
 };
 
 local holder_stroke = Instance.new("UIStroke");
