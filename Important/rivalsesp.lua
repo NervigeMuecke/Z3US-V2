@@ -164,23 +164,7 @@ get("player").update = function(self, character, data)
 	end
 
 	
-	local weapon = "none"
-	local tool = character:FindFirstChildWhichIsA("Tool")
-	if tool then
-		weapon = tool.Name
-	else
-		if workspace:FindFirstChild("ViewModels") then
-			for _, model in ipairs(workspace.ViewModels:GetChildren()) do
-				if model.Name:find(player.Name) then
-					local weaponName = model.Name:match(player.Name .. " %- (.+) %- .+")
-					if weaponName then
-						weapon = weaponName
-						break
-					end
-				end
-			end
-		end
-	end
+	local weapon = character:FindFirstChildWhichIsA("Tool") or "none"
 
 	task.spawn(function()
 		local position, visible = camera:WorldToViewportPoint(root.CFrame.Position)
