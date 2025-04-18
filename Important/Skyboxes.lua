@@ -103,4 +103,44 @@ return {
     SkyboxRt = "rbxassetid://12064115",
     SkyboxUp = "rbxassetid://12064131",
   },
+  ["Pink Daylight"] = {
+    SkyboxBk = "rbxassetid://271042516",
+    SkyboxDn = "rbxassetid://271077243",
+    SkyboxFt = "rbxassetid://271042556",
+    SkyboxLf = "rbxassetid://271042310",
+    SkyboxRt = "rbxassetid://271042467",
+    SkyboxUp = "rbxassetid://271077958"
+  },
+  ["Setting Sun"] = {
+    SkyboxBk = "rbxassetid://626460377",
+    SkyboxDn = "rbxassetid://626460216",
+    SkyboxFt = "rbxassetid://626460513",
+    SkyboxLf = "rbxassetid://626473032",
+    SkyboxRt = "rbxassetid://626458639",
+    SkyboxUp = "rbxassetid://626460625"
+  },
+  ["Fade Blue"] = {
+    SkyboxBk = "rbxassetid://153695414",
+    SkyboxDn = "rbxassetid://153695352",
+    SkyboxFt = "rbxassetid://153695452",
+    SkyboxLf = "rbxassetid://153695320",
+    SkyboxRt = "rbxassetid://153695383",
+    SkyboxUp = "rbxassetid://153695471"
+  },
+  ["Elegant Morning"] = {
+    SkyboxBk = "rbxassetid://153767241",
+    SkyboxDn = "rbxassetid://153767216",
+    SkyboxFt = "rbxassetid://153767266",
+    SkyboxLf = "rbxassetid://153767200",
+    SkyboxRt = "rbxassetid://153767231",
+    SkyboxUp = "rbxassetid://153767288"
+  },
+  ["Aesthetic Night"] = {
+    SkyboxBk = "rbxassetid://1045964490",
+    SkyboxDn = "rbxassetid://1045964368",
+    SkyboxFt = "rbxassetid://1045964655",
+    SkyboxLf = "rbxassetid://1045964655",
+    SkyboxRt = "rbxassetid://1045964655",
+    SkyboxUp = "rbxassetid://1045962969"
+  }
 }
