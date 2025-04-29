@@ -1148,14 +1148,14 @@ function library:AddWindow(text)
 		SECTIONHOLDER.Position = UDim2.new(0.0289115645, 0, -4.23979145e-08, 0)
 		SECTIONHOLDER.Size = UDim2.new(0, 275, 0, 138)
 		SECTIONHOLDER.ZIndex = 3	
-
+        --[[
 		if library.sections[SECTIONHOLDER.Name] ~= nil then
 			print('ERROR: FUNCTION (AddSection): SECTIONS MUST HAVE DIFFERENT NAMES!!!')
 			return 
 		else
 			library.sections[SECTIONHOLDER.Name] = _PARENT
 		end
-
+        ]]
 		Section.Name = "Section"
 		Section.Parent = SECTIONHOLDER
 		Section.AnchorPoint = Vector2.new(0.5, 0.5)
