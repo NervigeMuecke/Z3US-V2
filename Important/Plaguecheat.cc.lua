@@ -2267,9 +2267,6 @@ function library:AddWindow(text)
 	return sec
 end
 
-
-
-
 draggable(MAIN)
 
 -- to check fps (not mine function so yeah) --
@@ -2291,6 +2288,35 @@ spawn(function()
 	Start = TimeFunction()
 	RunService.Heartbeat:Connect(HeartbeatUpdate)
 end)
-library.GUI = PCR_1 
+library.GUI = PCR_1
+library.Visible = true
+
+function library:Hide()
+    if self.Visible then
+        self.Visible = false
+        PCR_1.Enabled = false
+    end
+end
+
+function library:Show()
+    if not self.Visible then
+        self.Visible = true
+        PCR_1.Enabled = true
+    end
+end
+
+function library:Toggle()
+    if self.Visible then
+        self:Hide()
+    else
+        self:Show()
+    end
+end
+
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == Enum.KeyCode.Insert then
+        library:Toggle()
+    end
+end)
 
 return library
