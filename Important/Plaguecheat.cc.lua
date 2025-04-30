@@ -3,6 +3,9 @@ local TweenService = game:GetService('TweenService');
 local uis = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 
+local library = {};
+library.accentcolor = Color3.fromRGB(85, 0, 255)
+
 local function createInstance(class, props)
 	local inst = Instance.new(class)
 	for i, v in pairs(props) do
@@ -252,7 +255,7 @@ function OpenedColor(text,ColourDisplay,Action,def)
 	BG.Name = "BG"
 	BG.Parent = Holder
 	BG.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-	BG.BorderColor3 = Color3.fromRGB(85, 0, 255)
+	BG.BorderColor3 = library.accentcolor
 	BG.BorderSizePixel = 0
 	BG.Position = UDim2.new(0, 0, 0.157927245, 0)
 	BG.Size = UDim2.new(0, 272, 0, 125)
@@ -373,7 +376,7 @@ function OpenedColor(text,ColourDisplay,Action,def)
 	Upper.Parent = Holder
 	Upper.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Upper.BackgroundTransparency = 1.000
-	Upper.BorderColor3 = Color3.fromRGB(85, 0, 255)
+	Upper.BorderColor3 = library.accentcolor
 	Upper.BorderSizePixel = 0
 	Upper.Position = UDim2.new(1.07835966e-07, 0, 0, 0)
 	Upper.Size = UDim2.new(0, 271, 0, 23)
@@ -395,8 +398,8 @@ function OpenedColor(text,ColourDisplay,Action,def)
 
 	linedecoupper.Name = "linedecoupper"
 	linedecoupper.Parent = Holder
-	linedecoupper.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
-	linedecoupper.BorderColor3 = Color3.fromRGB(85, 0, 255)
+	linedecoupper.BackgroundColor3 = library.accentcolor
+	linedecoupper.BorderColor3 = library.accentcolor
 	linedecoupper.BorderSizePixel = 0
 	linedecoupper.Position = UDim2.new(0, 0, 0.150589287, 0)
 	linedecoupper.Size = UDim2.new(0.961130738, 0, 0, 1)
@@ -570,7 +573,7 @@ MAIN.ZIndex = 2
 BG.Name = "BG"
 BG.Parent = MAIN
 BG.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-BG.BorderColor3 = Color3.fromRGB(85, 0, 255)
+BG.BorderColor3 = library.accentcolor
 BG.BorderSizePixel = 0
 BG.Position = UDim2.new(0, 0, 0.0615355708, 0)
 BG.Size = UDim2.new(0, 588, 0, 365)
@@ -580,7 +583,7 @@ Upper.Name = "Upper"
 Upper.Parent = MAIN
 Upper.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Upper.BackgroundTransparency = 1.000
-Upper.BorderColor3 = Color3.fromRGB(85, 0, 255)
+Upper.BorderColor3 = library.accentcolor
 Upper.BorderSizePixel = 0
 Upper.Size = UDim2.new(0, 600, 0, 23)
 Upper.ZIndex = 2
@@ -593,8 +596,8 @@ UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 
 linedecoupper.Name = "linedecoupper"
 linedecoupper.Parent = MAIN
-linedecoupper.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
-linedecoupper.BorderColor3 = Color3.fromRGB(85, 0, 255)
+linedecoupper.BackgroundColor3 = library.accentcolor
+linedecoupper.BorderColor3 = library.accentcolor
 linedecoupper.BorderSizePixel = 0
 linedecoupper.Position = UDim2.new(0, 0, 0.0591259636, 0)
 linedecoupper.Size = UDim2.new(1, 0, 0, 1)
@@ -604,7 +607,7 @@ DOWNER.Name = "DOWNER"
 DOWNER.Parent = MAIN
 DOWNER.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 DOWNER.BackgroundTransparency = 1.000
-DOWNER.BorderColor3 = Color3.fromRGB(85, 0, 255)
+DOWNER.BorderColor3 = library.accentcolor
 DOWNER.BorderSizePixel = 0
 DOWNER.Position = UDim2.new(0, 0, 0.943463266, 0)
 DOWNER.Size = UDim2.new(0, 600, 0, 23)
@@ -642,8 +645,8 @@ LABEL2.TextXAlignment = Enum.TextXAlignment.Right
 
 linedecoDOWNER.Name = "linedecoDOWNER"
 linedecoDOWNER.Parent = MAIN
-linedecoDOWNER.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
-linedecoDOWNER.BorderColor3 = Color3.fromRGB(85, 0, 255)
+linedecoDOWNER.BackgroundColor3 = library.accentcolor
+linedecoDOWNER.BorderColor3 = library.accentcolor
 linedecoDOWNER.BorderSizePixel = 0
 linedecoDOWNER.Position = UDim2.new(0, 0, 0.941053629, 0)
 linedecoDOWNER.Size = UDim2.new(1, 0, 0, 1)
@@ -678,8 +681,6 @@ repeat wait() until game.Players.LocalPlayer
 
 
 
-
-local library = {};
 library.sections = {};
 local totalSections = 0;
 
@@ -1191,8 +1192,8 @@ function library:AddWindow(text)
 
 		F_line.Name = "F_line"
 		F_line.Parent = Section
-		F_line.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
-		F_line.BorderColor3 = Color3.fromRGB(85, 0, 255)
+		F_line.BackgroundColor3 = library.accentcolor
+		F_line.BorderColor3 = library.accentcolor
 		F_line.BorderSizePixel = 0
 		F_line.Position = UDim2.new(0, 0, 0.099530004, 0)
 		F_line.Size = UDim2.new(1, 0, 0, 1)
@@ -1223,6 +1224,11 @@ function library:AddWindow(text)
 		AutoFit()
 		--TweenService:Create(closeSection , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {Rotation = 0}):Play()	
 		UpdateMainSize()
+
+		game:GetService("UserInputService").InputBegan:Connect(function()
+			F_line.BackgroundColor3 = library.accentcolor
+			F_line.BorderColor3 = library.accentcolor
+		end)
 
 		function inside:AddTextBox(Text,placeholder, CTOF, Type, Action)
 
@@ -1458,7 +1464,7 @@ function library:AddWindow(text)
 
 			--[UIGradient]--
 			local obj7 = Instance.new("UIGradient", obj6)
-			obj7.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(85, 0, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(36, 0, 110))})
+			obj7.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, library.accentcolor), ColorSequenceKeypoint.new(1, Color3.fromRGB(36, 0, 110))})
 
 			--[UIStroke]--
 			local obj8 = Instance.new("UIStroke", obj5)
@@ -1583,6 +1589,10 @@ function library:AddWindow(text)
 			_PARENT:TweenSize(UDim2.fromOffset(_PARENT.AbsoluteSize.X,  LIST.AbsoluteContentSize.Y + 15),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0, true) 
 			UpdateMainSize(nil,true)
 
+			game:GetService("UserInputService").InputBegan:Connect(function()
+				obj7.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, library.accentcolor), ColorSequenceKeypoint.new(1, Color3.fromRGB(36, 0, 110))})
+			end)
+
 		end
 
 		function inside:AddLabel(Text)
@@ -1663,7 +1673,7 @@ function library:AddWindow(text)
 
 			local function Update()
 				if activated == false then
-					TweenService:Create(color , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(85, 0, 255)}):Play()
+					TweenService:Create(color , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = library.accentcolor}):Play()
 					TweenService:Create(TextLabel, tweenInfo, { TextColor3 = Color3.fromRGB(152, 152, 152) }):Play()
 					spawn(function()
 						pcall(function()
@@ -2314,5 +2324,14 @@ function library:Toggle()
     end
 end
 
+game:GetService("UserInputService").InputBegan:Connect(function()
+	BG.BorderColor3 = library.accentcolor
+	Upper.BorderColor3 = library.accentcolor
+	linedecoupper.BackgroundColor3 = library.accentcolor
+	linedecoupper.BorderColor3 = library.accentcolor
+	DOWNER.BorderColor3 = library.accentcolor
+	linedecoDOWNER.BackgroundColor3 = library.accentcolor
+	linedecoDOWNER.BorderColor3 = library.accentcolor
+end)
 
 return library
