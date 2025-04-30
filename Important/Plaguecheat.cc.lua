@@ -1458,7 +1458,7 @@ function library:AddWindow(text)
 
 			--[UIGradient]--
 			local obj7 = Instance.new("UIGradient", obj6)
-			obj7.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.345098, 0.509804, 0.752941)), ColorSequenceKeypoint.new(1, Color3.new(0.270588, 0.4, 0.592157))})
+			obj7.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(85, 0, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(36, 0, 110))})
 
 			--[UIStroke]--
 			local obj8 = Instance.new("UIStroke", obj5)
@@ -1663,7 +1663,7 @@ function library:AddWindow(text)
 
 			local function Update()
 				if activated == false then
-					TweenService:Create(color , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(84, 122, 181)}):Play()
+					TweenService:Create(color , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(85, 0, 255)}):Play()
 					TweenService:Create(TextLabel, tweenInfo, { TextColor3 = Color3.fromRGB(152, 152, 152) }):Play()
 					spawn(function()
 						pcall(function()
@@ -2129,7 +2129,7 @@ function library:AddWindow(text)
 				TextLabel_3.TextSize = 15.000
 
 				if sel == v and v ~= Toggle.Text then
-					TweenService:Create(OPTION , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(28,28,28)}):Play()	
+					TweenService:Create(OPTION , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(27, 0, 82)}):Play()	
 					s = sel;
 				else
 					TweenService:Create(OPTION , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(37,37,37)}):Play()	
@@ -2142,7 +2142,7 @@ function library:AddWindow(text)
 						end	
 					end
 					s=TextLabel_3.Text
-					TweenService:Create(OPTION , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(28, 28, 28)}):Play()	
+					TweenService:Create(OPTION , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(27, 0, 82)}):Play()	
 					pcall(function()
 						Action(s)
 					end)
