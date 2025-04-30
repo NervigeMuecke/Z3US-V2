@@ -2290,6 +2290,7 @@ spawn(function()
 end)
 library.GUI = PCR_1
 library.Visible = true
+library.key = Enum.KeyCode.Insert
 
 function library:Hide()
     if self.Visible then
@@ -2313,10 +2314,5 @@ function library:Toggle()
     end
 end
 
-game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
-    if not gameProcessed and input.KeyCode == Enum.KeyCode.Insert then
-        library:Toggle()
-    end
-end)
 
 return library
