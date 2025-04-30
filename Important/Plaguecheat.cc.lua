@@ -1225,7 +1225,7 @@ function library:AddWindow(text)
 		--TweenService:Create(closeSection , TweenInfo.new(0.26, Enum.EasingStyle.Quad , Enum.EasingDirection.InOut), {Rotation = 0}):Play()	
 		UpdateMainSize()
 
-		game:GetService("UserInputService").InputBegan:Connect(function()
+		RunService.RenderStepped:Connect(function()
 			F_line.BackgroundColor3 = library.accentcolor
 			F_line.BorderColor3 = library.accentcolor
 		end)
@@ -1589,7 +1589,7 @@ function library:AddWindow(text)
 			_PARENT:TweenSize(UDim2.fromOffset(_PARENT.AbsoluteSize.X,  LIST.AbsoluteContentSize.Y + 15),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0, true) 
 			UpdateMainSize(nil,true)
 
-			game:GetService("UserInputService").InputBegan:Connect(function()
+			RunService.RenderStepped:Connect(function()
 				obj7.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, library.accentcolor), ColorSequenceKeypoint.new(1, Color3.fromRGB(36, 0, 110))})
 			end)
 
@@ -1692,6 +1692,13 @@ function library:AddWindow(text)
 					activated = false
 				end
 			end
+
+
+			RunService.RenderStepped:Connect(function()
+				if activated == true then 
+					color.BackgroundColor3 = library.accentcolor
+				end
+			end)
 
 			TemplateToggle.Name = "TemplateToggle"
 			TemplateToggle.Parent = HOLDER_2
@@ -1825,6 +1832,7 @@ function library:AddWindow(text)
 			_PARENT:TweenSize(UDim2.fromOffset(_PARENT.AbsoluteSize.X,  LIST.AbsoluteContentSize.Y + 15),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0, true) 
 			UpdateMainSize(nil,true)
 			return y
+			
 
 		end
 		function inside:AddSeparateBar()
@@ -2324,7 +2332,7 @@ function library:Toggle()
     end
 end
 
-game:GetService("UserInputService").InputBegan:Connect(function()
+RunService.RenderStepped:Connect(function()
 	BG.BorderColor3 = library.accentcolor
 	Upper.BorderColor3 = library.accentcolor
 	linedecoupper.BackgroundColor3 = library.accentcolor
