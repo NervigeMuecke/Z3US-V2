@@ -6,7 +6,7 @@ local runService = game:GetService("RunService")
 local camera = workspace.CurrentCamera
 local settings = {
     enabled = false,
-    teamCheck = false,
+    teamCheck = true,
     teamColor = false,
     maxDistance = 250,
     
