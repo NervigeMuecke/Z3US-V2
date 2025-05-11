@@ -1992,32 +1992,61 @@ function library:AddWindow(text)
 
 
 			local ischanging = false;
-			game:GetService("UserInputService").InputBegan:connect(function(a, gp) 
-				if not gp then 
-					if (a.KeyCode.Name == KeyCode or a.KeyCode.Name == KeyCode.Name) and ischanging == false then 
+			game:GetService("UserInputService").InputBegan:connect(function(input, gameProcessedEvent) 
+				if not gameProcessedEvent then 
+					if (input.KeyCode.Name == KeyCode or input.KeyCode.Name == KeyCode.Name) and ischanging == false then 
 						pcall(function()
-							Action(a.KeyCode)
+							Action(input.KeyCode)
 						end)
+					end
+					
+					if ischanging == false then
+						if (KeyCode == "Left Mouse Button" and input.UserInputType == Enum.UserInputType.MouseButton1) or
+						(KeyCode == "Right Mouse Button" and input.UserInputType == Enum.UserInputType.MouseButton2) or
+						(KeyCode == "Middle Mouse Button" and input.UserInputType == Enum.UserInputType.MouseButton3) then
+							pcall(function()
+								Action(input.UserInputType)
+							end)
+						end
 					end
 				end
 			end)
 
 			KeyButton.MouseButton1Click:connect(function() 
-				game.TweenService:Create(KeyButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-					BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-				}):Play()
-				KeyButton.Text = ". . ."
+				game.TweenService:Create(KeyButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundColor3 = Color3.fromRGB(34, 34, 34) }):Play() 
+				KeyButton.Text = ". . ." 
 				KeyButton:TweenSize(UDim2.new(0,getsize(KeyButton.Text),0,13), "InOut", "Quint", 0.2, true)
-
-				local v1, v2 = game:GetService('UserInputService').InputBegan:wait();
-				if v1.KeyCode.Name ~= "Unknown" then
+				
+				local v1, v2 = game:GetService('UserInputService').InputBegan:wait(); 
+				
+				local inputName = ""
+				local isMouseButton = false
+				
+				if v1.UserInputType == Enum.UserInputType.MouseButton1 then
+					inputName = "Left Mouse Button"
+					isMouseButton = true
+				elseif v1.UserInputType == Enum.UserInputType.MouseButton2 then
+					inputName = "Right Mouse Button"
+					isMouseButton = true
+				elseif v1.UserInputType == Enum.UserInputType.MouseButton3 then
+					inputName = "Middle Mouse Button"
+					isMouseButton = true
+				elseif v1.KeyCode.Name ~= "Unknown" then
+					inputName = v1.KeyCode.Name
+				end
+				
+				if inputName ~= "" then
 					ischanging = true
-					game.TweenService:Create(KeyButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-						BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-					}):Play()
-					KeyButton:TweenSize(UDim2.new(0,getsize( v1.KeyCode.Name),0,13), "Out", "Quint", 0.3, true)
-					KeyButton.Text = v1.KeyCode.Name
-					KeyCode = v1.KeyCode.Name;
+					game.TweenService:Create(KeyButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundColor3 = Color3.fromRGB(25, 25, 25) }):Play()
+					KeyButton:TweenSize(UDim2.new(0,getsize(inputName),0,13), "Out", "Quint", 0.3, true)
+					KeyButton.Text = inputName
+					
+					if isMouseButton then
+						KeyCode = inputName
+					else
+						KeyCode = v1.KeyCode.Name
+					end
+					
 					wait(.2)
 					ischanging = false
 				end
