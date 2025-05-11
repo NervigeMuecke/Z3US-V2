@@ -613,6 +613,8 @@ DOWNER.Position = UDim2.new(0, 0, 0.943463266, 0)
 DOWNER.Size = UDim2.new(0, 600, 0, 23)
 DOWNER.ZIndex = 2
 
+local LocalPlayer = game:GetService("Players").LocalPlayer
+
 WEBSITE.Name = "WEBSITE"
 WEBSITE.Parent = DOWNER
 WEBSITE.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -623,10 +625,9 @@ WEBSITE.Position = UDim2.new(0.177174687, 0, 0.499190629, 0)
 WEBSITE.Size = UDim2.new(0, 197, 0, 23)
 WEBSITE.ZIndex = 3
 WEBSITE.Font = Enum.Font.ArialBold
-WEBSITE.Text = "Zypherion | CounterBlox" 
+WEBSITE.Text = "Zypherion | CounterBlox ("..LocalPlayer.Name..")"
 WEBSITE.TextColor3 = Color3.fromRGB(199, 199, 199)
 WEBSITE.TextSize = 14.000
-WEBSITE.TextXAlignment = Enum.TextXAlignment.Left
 
 LABEL2.Name = "LABEL2"
 LABEL2.Parent = DOWNER
