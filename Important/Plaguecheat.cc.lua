@@ -626,6 +626,7 @@ WEBSITE.Font = Enum.Font.ArialBold
 WEBSITE.Text = "Zypherion | CounterBlox"
 WEBSITE.TextColor3 = Color3.fromRGB(199, 199, 199)
 WEBSITE.TextSize = 14.000
+WEBSITE.TextXAlignment = Enum.TextXAlignment.Left
 
 LABEL2.Name = "LABEL2"
 LABEL2.Parent = DOWNER
@@ -2360,6 +2361,53 @@ function library:Toggle()
     end
 end
 
+--/ Misc TAB \--
+local MiscTab = library:AddWindow('Misc')
+local MenuSection = MiscTab:AddSection('Menu', 'Left')
+
+-- Menu Section
+MenuSection:AddKeyBind('Hide UI Key', library.key, function(val)
+    library.key = val
+end)
+
+MenuSection:AddToggle("Test", false, nil, function(a)
+
+end)
+
+MenuSection:AddColorPallete('Accent Color', library.accentcolor,function(a) 
+    library.accentcolor = a
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == library.key then
+        library:Toggle()
+    end
+end)
+
+
+local aimbot = {
+    enabled = false,
+    aimKey = Enum.UserInputType.MouseButton2,
+    aimMode = "Hold",
+    teamCheck = false,
+    wallCheck = true,
+    fov = 150,
+    showFov = false,
+    fovColor = Color3.fromRGB(19, 0, 255),
+    fovTransparency = 0.7,
+    fovThickness = 1,
+    smoothness = 0.5,
+    hitpart = "Head",
+    hitparts = {"Head", "Torso", "Left Arm", "Right Arm", "Left Leg", "Right Leg"}
+}
+
+
+MenuSection:AddKeyBind('Hide UI Key', aimbot.aimKey, function(val)
+    aimbot.aimKey = val
+	print(aimbot.aimKey)
+end)
+
+
 RunService.RenderStepped:Connect(function()
 	BG.BorderColor3 = library.accentcolor
 	Upper.BorderColor3 = library.accentcolor
@@ -2369,5 +2417,6 @@ RunService.RenderStepped:Connect(function()
 	linedecoDOWNER.BackgroundColor3 = library.accentcolor
 	linedecoDOWNER.BorderColor3 = library.accentcolor
 end)
+
 
 return library
