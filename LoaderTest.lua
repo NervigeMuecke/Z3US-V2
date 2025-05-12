@@ -356,7 +356,7 @@ end)
 
 CounterBlox.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		selectScript(CounterBlox, "BETA TESTING")
+		selectScript(CounterBlox, "CounterBlox")
 	end
 end)
 
