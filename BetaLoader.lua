@@ -1,409 +1,480 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/other.lua"))()
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local TextLabel = Instance.new("TextLabel")
-local TextLabel_2 = Instance.new("TextLabel")
-local Arsenal = Instance.new("Frame")
-local UICorner_2 = Instance.new("UICorner")
-local TextLabel_3 = Instance.new("TextLabel")
-local Loadbtn = Instance.new("TextButton")
-local UICorner_3 = Instance.new("UICorner")
-local CloseButton = Instance.new("TextButton")
-local Planks = Instance.new("Frame")
-local UICorner_4 = Instance.new("UICorner")
-local TextLabel_4 = Instance.new("TextLabel")
-local Rivals = Instance.new("Frame")
-local UICorner_5 = Instance.new("UICorner")
-local TextLabel_5 = Instance.new("TextLabel")
-local TextLabel_6 = Instance.new("TextLabel")
-local TextLabel_7 = Instance.new("TextLabel")
-local CounterBlox = Instance.new("Frame")
-local TextLabel_8 = Instance.new("TextLabel")
-local UICorner_6 = Instance.new("UICorner")
-local Universal = Instance.new("Frame")
-local TextLabel_9 = Instance.new("TextLabel")
-local UICorner_7 = Instance.new("UICorner")
-local TextLabel_10 = Instance.new("TextLabel")
-local SelectedScript = Instance.new("TextLabel")
+local z3USLoader = Instance.new("ScreenGui")
+z3USLoader.Name = "Z3US Loader"
+z3USLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+z3USLoader.Parent = game:GetService("CoreGui")
+z3USLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+z3USLoader.ResetOnSpawn = false
+z3USLoader.DisplayOrder = 999999
+z3USLoader.IgnoreGuiInset = true
 
-local GunfightArena = Instance.new("Frame")
-local TextLabel_11 = Instance.new("TextLabel")
-local UICorner_8 = Instance.new("UICorner")
+local frame = Instance.new("Frame")
+frame.Name = "Frame"
+frame.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Position = UDim2.fromScale(0.0883, 0.11)
+frame.Size = UDim2.fromOffset(878, 524)
 
-local AutoloadToggle = Instance.new("Frame")
-local UICorner_Toggle = Instance.new("UICorner")
-local ToggleButton = Instance.new("TextButton")
-local UICorner_ToggleBtn = Instance.new("UICorner")
-local ToggleLabel = Instance.new("TextLabel")
-local ToggleStroke = Instance.new("UIStroke")
+frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		local dragStart = input.Position
+		local frameStart = frame.Position
 
-local ArsenalStroke = Instance.new("UIStroke")
-local PlanksStroke = Instance.new("UIStroke")
-local RivalsStroke = Instance.new("UIStroke")
-local CounterBloxStroke = Instance.new("UIStroke")
-local UniversalStroke = Instance.new("UIStroke")
-local GunfightArenaStroke = Instance.new("UIStroke")
+		local connection
+		connection = game:GetService("UserInputService").InputChanged:Connect(function(inputChanged)
+			if inputChanged.UserInputType == Enum.UserInputType.MouseMovement then
+				local delta = inputChanged.Position - dragStart
+				frame.Position = UDim2.new(
+					frameStart.X.Scale,
+					frameStart.X.Offset + delta.X,
+					frameStart.Y.Scale,
+					frameStart.Y.Offset + delta.Y
+				)
+			end
+		end)
 
-ScreenGui.Parent = game:GetService("CoreGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnSpawn = false
-ScreenGui.DisplayOrder = 999999
-ScreenGui.IgnoreGuiInset = true
+		local endConnection
+		endConnection = game:GetService("UserInputService").InputEnded:Connect(function(inputEnded)
+			if inputEnded.UserInputType == Enum.UserInputType.MouseButton1 then
+				connection:Disconnect()
+				endConnection:Disconnect()
+			end
+		end)
+	end
+end)
 
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.0883081928, 0, 0.110332131, 0)
-Frame.Size = UDim2.new(0, 800, 0, 600)
-Frame.Active = true
-Frame.Draggable = true
-Frame.ZIndex = 10
+local uICorner = Instance.new("UICorner")
+uICorner.Name = "UICorner"
+uICorner.CornerRadius = UDim.new(0, 25)
+uICorner.Parent = frame
 
-UICorner.CornerRadius = UDim.new(0, 25)
-UICorner.Parent = Frame
+local textLabel = Instance.new("TextLabel")
+textLabel.Name = "TextLabel"
+textLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.BackgroundTransparency = 1
+textLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel.BorderSizePixel = 0
+textLabel.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel.Position = UDim2.fromScale(0.571, 0.219)
+textLabel.Size = UDim2.fromOffset(316, 63)
+textLabel.Text = "Z3US"
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.TextScaled = true
+textLabel.TextSize = 14
+textLabel.TextWrapped = true
 
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.571090877, 0, 0.218952939, 0)
-TextLabel.Size = UDim2.new(0, 250, 0, 50)
-TextLabel.Font = Enum.Font.Nunito
-TextLabel.Text = "Z3US"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
+local textLabel1 = Instance.new("TextLabel")
+textLabel1.Name = "TextLabel"
+textLabel1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel1.BackgroundTransparency = 1
+textLabel1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel1.BorderSizePixel = 0
+textLabel1.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel1.Position = UDim2.fromScale(0, 0.619)
+textLabel1.Size = UDim2.fromOffset(408, 244)
+textLabel1.Text = ""
+textLabel1.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel1.TextScaled = true
+textLabel1.TextSize = 14
+textLabel1.TextTransparency = 0.4
+textLabel1.TextWrapped = true
+textLabel1.Parent = textLabel
 
-TextLabel_2.Parent = TextLabel
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BackgroundTransparency = 1.000
-TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_2.BorderSizePixel = 0
-TextLabel_2.Position = UDim2.new(0, 0, 0.61860466, 0)
-TextLabel_2.Size = UDim2.new(0, 300, 0, 200)
-TextLabel_2.Font = Enum.Font.Nunito
-TextLabel_2.Text = ""
-TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.TextScaled = true
-TextLabel_2.TextSize = 14.000
-TextLabel_2.TextTransparency = 0.400
-TextLabel_2.TextWrapped = true
+textLabel.Parent = frame
 
-Arsenal.Name = "Arsenal"
-Arsenal.Parent = Frame
-Arsenal.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-Arsenal.BackgroundTransparency = 0.900
-Arsenal.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Arsenal.BorderSizePixel = 0
-Arsenal.Position = UDim2.new(0.031160038, 0, 0.0357386284, 0)
-Arsenal.Size = UDim2.new(0, 300, 0, 70)
+local arsenal = Instance.new("Frame")
+arsenal.Name = "Arsenal"
+arsenal.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+arsenal.BackgroundTransparency = 0.9
+arsenal.BorderColor3 = Color3.fromRGB(0, 0, 0)
+arsenal.BorderSizePixel = 0
+arsenal.Position = UDim2.fromScale(0.03, 0.0415)
+arsenal.Size = UDim2.fromOffset(330, 65)
 
-ArsenalStroke.Parent = Arsenal
-ArsenalStroke.Color = Color3.fromRGB(26, 29, 37)
-ArsenalStroke.Thickness = 2
-ArsenalStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local arsenalStroke = Instance.new("UIStroke")
+arsenalStroke.Name = "UIStroke"
+arsenalStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+arsenalStroke.Color = Color3.fromRGB(26, 29, 37)
+arsenalStroke.Thickness = 1.9
+arsenalStroke.Parent = arsenal
 
-UICorner_2.CornerRadius = UDim.new(0, 25)
-UICorner_2.Parent = Arsenal
+local uICorner1 = Instance.new("UICorner")
+uICorner1.Name = "UICorner"
+uICorner1.CornerRadius = UDim.new(0, 25)
+uICorner1.Parent = arsenal
 
-TextLabel_3.Parent = Arsenal
-TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.BackgroundTransparency = 1.000
-TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.BorderSizePixel = 0
-TextLabel_3.Position = UDim2.new(0.124573149, 0, 0, 0)
-TextLabel_3.Size = UDim2.new(0, 225, 0, 65)
-TextLabel_3.Font = Enum.Font.Nunito
-TextLabel_3.Text = "Arsenal"
-TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.TextSize = 48.000
-TextLabel_3.TextWrapped = true
+local textLabel2 = Instance.new("TextLabel")
+textLabel2.Name = "TextLabel"
+textLabel2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel2.BackgroundTransparency = 1
+textLabel2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel2.BorderSizePixel = 0
+textLabel2.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel2.Position = UDim2.fromScale(0.2, 0.0462)
+textLabel2.Size = UDim2.fromOffset(197, 58)
+textLabel2.Text = "Arsenal"
+textLabel2.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel2.TextSize = 62
+textLabel2.TextWrapped = true
+textLabel2.Parent = arsenal
 
-Loadbtn.Name = "Loadbtn"
-Loadbtn.Parent = Frame
-Loadbtn.BackgroundColor3 = Color3.fromRGB(27, 29, 37)
-Loadbtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Loadbtn.BorderSizePixel = 0
-Loadbtn.Position = UDim2.new(0.527222872, 0, 0.655968249, 0)
-Loadbtn.Size = UDim2.new(0, 320, 0, 50)
-Loadbtn.Font = Enum.Font.Nunito
-Loadbtn.Text = "Load"
-Loadbtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-Loadbtn.TextScaled = true
-Loadbtn.TextSize = 14.000
-Loadbtn.TextWrapped = true
+arsenal.Parent = frame
 
-UICorner_3.CornerRadius = UDim.new(0, 25)
-UICorner_3.Parent = Loadbtn
+local loadbtn = Instance.new("TextButton")
+loadbtn.Name = "Loadbtn"
+loadbtn.BackgroundColor3 = Color3.fromRGB(27, 29, 37)
+loadbtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+loadbtn.BorderSizePixel = 0
+loadbtn.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+loadbtn.Position = UDim2.fromScale(0.527, 0.656)
+loadbtn.Size = UDim2.fromOffset(405, 62)
+loadbtn.Text = "Load"
+loadbtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+loadbtn.TextScaled = true
+loadbtn.TextSize = 14
+loadbtn.TextWrapped = true
 
-CloseButton.Name = "CloseButton"
-CloseButton.Parent = Frame
-CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-CloseButton.BackgroundTransparency = 1.000
-CloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CloseButton.BorderSizePixel = 0
-CloseButton.Position = UDim2.new(0.95838964, 0, 0, 0)
-CloseButton.Size = UDim2.new(0, 30, 0, 35)
-CloseButton.Font = Enum.Font.FredokaOne
-CloseButton.Text = "X"
-CloseButton.TextColor3 = Color3.fromRGB(58, 67, 98)
-CloseButton.TextScaled = true
-CloseButton.TextSize = 14.000
-CloseButton.TextWrapped = true
+local uICorner2 = Instance.new("UICorner")
+uICorner2.Name = "UICorner"
+uICorner2.CornerRadius = UDim.new(0, 25)
+uICorner2.Parent = loadbtn
 
-Planks.Name = "Planks"
-Planks.Parent = Frame
-Planks.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-Planks.BackgroundTransparency = 0.900
-Planks.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Planks.BorderSizePixel = 0
-Planks.Position = UDim2.new(0.031160038, 0, 0.180327609, 0)
-Planks.Size = UDim2.new(0, 300, 0, 70)
+loadbtn.Parent = frame
 
-PlanksStroke.Parent = Planks
-PlanksStroke.Color = Color3.fromRGB(26, 29, 37)
-PlanksStroke.Thickness = 2
-PlanksStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local closeButton = Instance.new("TextButton")
+closeButton.Name = "CloseButton"
+closeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+closeButton.BackgroundTransparency = 1
+closeButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+closeButton.BorderSizePixel = 0
+closeButton.FontFace = Font.new("rbxasset://fonts/families/FredokaOne.json")
+closeButton.Position = UDim2.fromScale(0.949, 0.0172)
+closeButton.Size = UDim2.fromOffset(44, 41)
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.fromRGB(58, 67, 98)
+closeButton.TextScaled = true
+closeButton.TextSize = 14
+closeButton.TextWrapped = true
 
-UICorner_4.CornerRadius = UDim.new(0, 25)
-UICorner_4.Parent = Planks
+local uIStroke1 = Instance.new("UIStroke")
+uIStroke1.Name = "UIStroke"
+uIStroke1.Color = Color3.fromRGB(255, 255, 255)
+uIStroke1.Enabled = false
+uIStroke1.Thickness = 1.2
+uIStroke1.Parent = closeButton
 
-TextLabel_4.Parent = Planks
-TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_4.BackgroundTransparency = 1.000
-TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.BorderSizePixel = 0
-TextLabel_4.Position = UDim2.new(0.14229472, 0, -3.63304508e-07, 0)
-TextLabel_4.Size = UDim2.new(0, 225, 0, 70)
-TextLabel_4.Font = Enum.Font.Nunito
-TextLabel_4.Text = "Planks"
-TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_4.TextSize = 48.000
-TextLabel_4.TextWrapped = true
+closeButton.Parent = frame
 
-Rivals.Name = "Rivals"
-Rivals.Parent = Frame
-Rivals.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-Rivals.BackgroundTransparency = 0.900
-Rivals.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Rivals.BorderSizePixel = 0
-Rivals.Position = UDim2.new(0.0311599784, 0, 0.324926234, 0)
-Rivals.Size = UDim2.new(0, 300, 0, 70)
+local textLabel3 = Instance.new("TextLabel")
+textLabel3.Name = "TextLabel"
+textLabel3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel3.BackgroundTransparency = 1
+textLabel3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel3.BorderSizePixel = 0
+textLabel3.FontFace = Font.new(
+	"rbxasset://fonts/families/Bangers.json",
+	Enum.FontWeight.Bold,
+	Enum.FontStyle.Italic
+)
+textLabel3.Position = UDim2.fromScale(0.692, 0.0562)
+textLabel3.Size = UDim2.fromOffset(70, 89)
+textLabel3.Text = "Z"
+textLabel3.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel3.TextScaled = true
+textLabel3.TextSize = 14
+textLabel3.TextWrapped = true
 
-RivalsStroke.Parent = Rivals
-RivalsStroke.Color = Color3.fromRGB(26, 29, 37)
-RivalsStroke.Thickness = 2
-RivalsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local textLabel4 = Instance.new("TextLabel")
+textLabel4.Name = "TextLabel"
+textLabel4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel4.BackgroundTransparency = 1
+textLabel4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel4.BorderSizePixel = 0
+textLabel4.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel4.Position = UDim2.fromScale(0, 0.619)
+textLabel4.Size = UDim2.fromOffset(408, 244)
+textLabel4.Text = ""
+textLabel4.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel4.TextScaled = true
+textLabel4.TextSize = 14
+textLabel4.TextTransparency = 0.4
+textLabel4.TextWrapped = true
+textLabel4.Parent = textLabel3
 
-UICorner_5.CornerRadius = UDim.new(0, 25)
-UICorner_5.Parent = Rivals
+textLabel3.Parent = frame
 
-TextLabel_5.Parent = Rivals
-TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.BackgroundTransparency = 1.000
-TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_5.BorderSizePixel = 0
-TextLabel_5.Position = UDim2.new(0.142294794, 0, -3.59030338e-07, 0)
-TextLabel_5.Size = UDim2.new(0, 225, 0, 70)
-TextLabel_5.Font = Enum.Font.Nunito
-TextLabel_5.Text = "Rivals"
-TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.TextSize = 48.000
-TextLabel_5.TextWrapped = true
+local textLabel5 = Instance.new("TextLabel")
+textLabel5.Name = "TextLabel"
+textLabel5.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+textLabel5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel5.BorderSizePixel = 0
+textLabel5.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel5.Position = UDim2.fromScale(0.628, 0.821)
+textLabel5.Size = UDim2.fromOffset(200, 50)
+textLabel5.Text = "Thank you for using Z3US <3"
+textLabel5.TextColor3 = Color3.fromRGB(40, 58, 85)
+textLabel5.TextSize = 34
+textLabel5.Parent = frame
 
-TextLabel_6.Parent = Frame
-TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_6.BackgroundTransparency = 1.000
-TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_6.BorderSizePixel = 0
-TextLabel_6.Position = UDim2.new(0.692038178, 0, 0.0561641678, 0)
-TextLabel_6.Size = UDim2.new(0, 60, 0, 75)
-TextLabel_6.Font = Enum.Font.Bangers
-TextLabel_6.Text = "Z"
-TextLabel_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_6.TextScaled = true
-TextLabel_6.TextSize = 14.000
-TextLabel_6.TextWrapped = true
+local textLabel6 = Instance.new("TextLabel")
+textLabel6.Name = "TextLabel"
+textLabel6.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+textLabel6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel6.BorderSizePixel = 0
+textLabel6.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel6.Position = UDim2.fromScale(0.628, 0.447)
+textLabel6.Size = UDim2.fromOffset(200, 50)
+textLabel6.Text = "No Script Selected"
+textLabel6.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel6.TextSize = 34
+textLabel6.Parent = frame
 
-TextLabel_7.Parent = TextLabel_6
-TextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_7.BackgroundTransparency = 1.000
-TextLabel_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_7.BorderSizePixel = 0
-TextLabel_7.Position = UDim2.new(0, 0, 0.61860466, 0)
-TextLabel_7.Size = UDim2.new(0, 300, 0, 200)
-TextLabel_7.Font = Enum.Font.Nunito
-TextLabel_7.Text = ""
-TextLabel_7.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_7.TextScaled = true
-TextLabel_7.TextSize = 14.000
-TextLabel_7.TextTransparency = 0.400
-TextLabel_7.TextWrapped = true
+local planks = Instance.new("Frame")
+planks.Name = "Planks"
+planks.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+planks.BackgroundTransparency = 0.9
+planks.BorderColor3 = Color3.fromRGB(0, 0, 0)
+planks.BorderSizePixel = 0
+planks.Position = UDim2.fromScale(0.03, 0.188)
+planks.Size = UDim2.fromOffset(330, 65)
 
-CounterBlox.Name = "CounterBlox"
-CounterBlox.Parent = Frame
-CounterBlox.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-CounterBlox.BackgroundTransparency = 0.900
-CounterBlox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CounterBlox.BorderSizePixel = 0
-CounterBlox.Position = UDim2.new(0.0323932543, 0, 0.469524860, 0)
-CounterBlox.Size = UDim2.new(0, 300, 0, 70)
+local planksStroke = Instance.new("UIStroke")
+planksStroke.Name = "UIStroke"
+planksStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+planksStroke.Color = Color3.fromRGB(26, 29, 37)
+planksStroke.Thickness = 1.9
+planksStroke.Parent = planks
 
-CounterBloxStroke.Parent = CounterBlox
-CounterBloxStroke.Color = Color3.fromRGB(26, 29, 37)
-CounterBloxStroke.Thickness = 2
-CounterBloxStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local uICorner3 = Instance.new("UICorner")
+uICorner3.Name = "UICorner"
+uICorner3.CornerRadius = UDim.new(0, 25)
+uICorner3.Parent = planks
 
-TextLabel_8.Parent = CounterBlox
-TextLabel_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_8.BackgroundTransparency = 1.000
-TextLabel_8.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_8.BorderSizePixel = 0
-TextLabel_8.Position = UDim2.new(0.142294794, 0, -3.59030338e-07, 0)
-TextLabel_8.Size = UDim2.new(0, 225, 0, 70)
-TextLabel_8.Font = Enum.Font.Nunito
-TextLabel_8.Text = "CounterBlox"
-TextLabel_8.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_8.TextSize = 42.000
-TextLabel_8.TextWrapped = true
+local textLabel7 = Instance.new("TextLabel")
+textLabel7.Name = "TextLabel"
+textLabel7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel7.BackgroundTransparency = 1
+textLabel7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel7.BorderSizePixel = 0
+textLabel7.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel7.Position = UDim2.fromScale(0.2, 0.0462)
+textLabel7.Size = UDim2.fromOffset(197, 58)
+textLabel7.Text = "Planks"
+textLabel7.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel7.TextSize = 62
+textLabel7.TextWrapped = true
+textLabel7.Parent = planks
 
-UICorner_6.CornerRadius = UDim.new(0, 25)
-UICorner_6.Parent = CounterBlox
+planks.Parent = frame
 
-GunfightArena.Name = "GunfightArena"
-GunfightArena.Parent = Frame
-GunfightArena.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-GunfightArena.BackgroundTransparency = 0.900
-GunfightArena.BorderColor3 = Color3.fromRGB(0, 0, 0)
-GunfightArena.BorderSizePixel = 0
-GunfightArena.Position = UDim2.new(0.0312633105, 0, 0.614123486, 0)
-GunfightArena.Size = UDim2.new(0, 300, 0, 70)
+local universal = Instance.new("Frame")
+universal.Name = "Universal"
+universal.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+universal.BackgroundTransparency = 0.9
+universal.BorderColor3 = Color3.fromRGB(0, 0, 0)
+universal.BorderSizePixel = 0
+universal.Position = UDim2.fromScale(0.0289, 0.806)
+universal.Size = UDim2.fromOffset(330, 65)
 
-GunfightArenaStroke.Parent = GunfightArena
-GunfightArenaStroke.Color = Color3.fromRGB(26, 29, 37)
-GunfightArenaStroke.Thickness = 2
-GunfightArenaStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local universalStroke = Instance.new("UIStroke")
+universalStroke.Name = "UIStroke"
+universalStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+universalStroke.Color = Color3.fromRGB(26, 29, 37)
+universalStroke.Thickness = 1.9
+universalStroke.Parent = universal
 
-TextLabel_11.Parent = GunfightArena
-TextLabel_11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_11.BackgroundTransparency = 1.000
-TextLabel_11.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_11.BorderSizePixel = 0
-TextLabel_11.Position = UDim2.new(0.0666666999, 0, -3.59030338e-07, 0)
-TextLabel_11.Size = UDim2.new(0, 280, 0, 70)
-TextLabel_11.Font = Enum.Font.Nunito
-TextLabel_11.Text = "Gunfight Arena"
-TextLabel_11.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_11.TextSize = 34.000
-TextLabel_11.TextWrapped = true
+local uICorner4 = Instance.new("UICorner")
+uICorner4.Name = "UICorner"
+uICorner4.CornerRadius = UDim.new(0, 25)
+uICorner4.Parent = universal
 
-UICorner_8.CornerRadius = UDim.new(0, 25)
-UICorner_8.Parent = GunfightArena
+local textLabel8 = Instance.new("TextLabel")
+textLabel8.Name = "TextLabel"
+textLabel8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel8.BackgroundTransparency = 1
+textLabel8.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel8.BorderSizePixel = 0
+textLabel8.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel8.Position = UDim2.fromScale(0.2, 0.0462)
+textLabel8.Size = UDim2.fromOffset(197, 58)
+textLabel8.Text = "Universal"
+textLabel8.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel8.TextSize = 62
+textLabel8.TextWrapped = true
+textLabel8.Parent = universal
 
-Universal.Name = "Universal"
-Universal.Parent = Frame
-Universal.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-Universal.BackgroundTransparency = 0.900
-Universal.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Universal.BorderSizePixel = 0
-Universal.Position = UDim2.new(0.0312633105, 0, 0.758722111, 0)
-Universal.Size = UDim2.new(0, 300, 0, 70)
+universal.Parent = frame
 
-UniversalStroke.Parent = Universal
-UniversalStroke.Color = Color3.fromRGB(26, 29, 37)
-UniversalStroke.Thickness = 2
-UniversalStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local gunfightArena = Instance.new("Frame")
+gunfightArena.Name = "GunfightArena"
+gunfightArena.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+gunfightArena.BackgroundTransparency = 0.9
+gunfightArena.BorderColor3 = Color3.fromRGB(0, 0, 0)
+gunfightArena.BorderSizePixel = 0
+gunfightArena.Position = UDim2.fromScale(0.03, 0.65)
+gunfightArena.Size = UDim2.fromOffset(330, 65)
 
-TextLabel_9.Parent = Universal
-TextLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_9.BackgroundTransparency = 1.000
-TextLabel_9.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_9.BorderSizePixel = 0
-TextLabel_9.Position = UDim2.new(0.142294794, 0, -3.59030338e-07, 0)
-TextLabel_9.Size = UDim2.new(0, 225, 0, 70)
-TextLabel_9.Font = Enum.Font.Nunito
-TextLabel_9.Text = "Universal"
-TextLabel_9.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_9.TextSize = 48.000
-TextLabel_9.TextWrapped = true
+local gunfightArenaStroke = Instance.new("UIStroke")
+gunfightArenaStroke.Name = "UIStroke"
+gunfightArenaStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+gunfightArenaStroke.Color = Color3.fromRGB(26, 29, 37)
+gunfightArenaStroke.Thickness = 1.9
+gunfightArenaStroke.Parent = gunfightArena
 
-UICorner_7.CornerRadius = UDim.new(0, 25)
-UICorner_7.Parent = Universal
+local uICorner5 = Instance.new("UICorner")
+uICorner5.Name = "UICorner"
+uICorner5.CornerRadius = UDim.new(0, 25)
+uICorner5.Parent = gunfightArena
 
-TextLabel_10.Parent = Frame
-TextLabel_10.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-TextLabel_10.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_10.BorderSizePixel = 0
-TextLabel_10.Position = UDim2.new(0.627807558, 0, 0.910783529, 0)
-TextLabel_10.Size = UDim2.new(0, 180, 0, 40)
-TextLabel_10.Font = Enum.Font.Nunito
-TextLabel_10.Text = "Thank you for using Z3US <3"
-TextLabel_10.TextColor3 = Color3.fromRGB(40, 58, 85)
-TextLabel_10.TextSize = 28.000
+local textLabel9 = Instance.new("TextLabel")
+textLabel9.Name = "TextLabel"
+textLabel9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel9.BackgroundTransparency = 1
+textLabel9.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel9.BorderSizePixel = 0
+textLabel9.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel9.Position = UDim2.fromScale(0.00639, 0.0462)
+textLabel9.Size = UDim2.fromOffset(322, 58)
+textLabel9.Text = "Gunfight Arena"
+textLabel9.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel9.TextSize = 62
+textLabel9.TextWrapped = true
+textLabel9.Parent = gunfightArena
 
-SelectedScript.Name = "SelectedScript"
-SelectedScript.Parent = Frame
-SelectedScript.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-SelectedScript.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SelectedScript.BorderSizePixel = 0
-SelectedScript.Position = UDim2.new(0.627807558, 0, 0.446940303, 0)
-SelectedScript.Size = UDim2.new(0, 180, 0, 40)
-SelectedScript.Font = Enum.Font.Nunito
-SelectedScript.Text = "No Script Selected"
-SelectedScript.TextColor3 = Color3.fromRGB(255, 255, 255)
-SelectedScript.TextSize = 28.000
+gunfightArena.Parent = frame
 
-AutoloadToggle.Name = "AutoloadToggle"
-AutoloadToggle.Parent = Frame
-AutoloadToggle.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
-AutoloadToggle.BackgroundTransparency = 0.900
-AutoloadToggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-AutoloadToggle.BorderSizePixel = 0
-AutoloadToggle.Position = UDim2.new(0.55, 0, 0.55, 0)
-AutoloadToggle.Size = UDim2.new(0, 280, 0, 50)
-AutoloadToggle.Visible = false
+local counterblox = Instance.new("Frame")
+counterblox.Name = "Counterblox"
+counterblox.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+counterblox.BackgroundTransparency = 0.9
+counterblox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+counterblox.BorderSizePixel = 0
+counterblox.Position = UDim2.fromScale(0.0277, 0.489)
+counterblox.Size = UDim2.fromOffset(330, 65)
 
-ToggleStroke.Parent = AutoloadToggle
-ToggleStroke.Color = Color3.fromRGB(26, 29, 37)
-ToggleStroke.Thickness = 2
-ToggleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local counterbloxStroke = Instance.new("UIStroke")
+counterbloxStroke.Name = "UIStroke"
+counterbloxStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+counterbloxStroke.Color = Color3.fromRGB(26, 29, 37)
+counterbloxStroke.Thickness = 1.9
+counterbloxStroke.Parent = counterblox
 
-UICorner_Toggle.CornerRadius = UDim.new(0, 25)
-UICorner_Toggle.Parent = AutoloadToggle
+local uICorner6 = Instance.new("UICorner")
+uICorner6.Name = "UICorner"
+uICorner6.CornerRadius = UDim.new(0, 25)
+uICorner6.Parent = counterblox
 
-ToggleLabel.Name = "ToggleLabel"
-ToggleLabel.Parent = AutoloadToggle
-ToggleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ToggleLabel.BackgroundTransparency = 1.000
-ToggleLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ToggleLabel.BorderSizePixel = 0
-ToggleLabel.Position = UDim2.new(0.05, 0, 0, 0)
-ToggleLabel.Size = UDim2.new(0, 160, 0, 50)
-ToggleLabel.Font = Enum.Font.Nunito
-ToggleLabel.Text = "Autoload:"
-ToggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-ToggleLabel.TextSize = 20.000
-ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
+local textLabel10 = Instance.new("TextLabel")
+textLabel10.Name = "TextLabel"
+textLabel10.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel10.BackgroundTransparency = 1
+textLabel10.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel10.BorderSizePixel = 0
+textLabel10.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel10.Position = UDim2.fromScale(0.0276, 0.0462)
+textLabel10.Size = UDim2.fromOffset(311, 58)
+textLabel10.Text = "Counterblox"
+textLabel10.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel10.TextSize = 62
+textLabel10.TextWrapped = true
+textLabel10.Parent = counterblox
 
-ToggleButton.Name = "ToggleButton"
-ToggleButton.Parent = AutoloadToggle
-ToggleButton.BackgroundColor3 = Color3.fromRGB(140, 155, 208)
-ToggleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ToggleButton.BorderSizePixel = 0
-ToggleButton.Position = UDim2.new(0.65, 0, 0.15, 0)
-ToggleButton.Size = UDim2.new(0, 80, 0, 35)
-ToggleButton.Font = Enum.Font.Nunito
-ToggleButton.Text = "ON"
-ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-ToggleButton.TextSize = 18.000
-ToggleButton.TextWrapped = true
+counterblox.Parent = frame
 
-UICorner_ToggleBtn.CornerRadius = UDim.new(0, 15)
-UICorner_ToggleBtn.Parent = ToggleButton
+local rivals = Instance.new("Frame")
+rivals.Name = "Rivals"
+rivals.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+rivals.BackgroundTransparency = 0.9
+rivals.BorderColor3 = Color3.fromRGB(0, 0, 0)
+rivals.BorderSizePixel = 0
+rivals.Position = UDim2.fromScale(0.0289, 0.34)
+rivals.Size = UDim2.fromOffset(330, 65)
+
+local rivalsStroke = Instance.new("UIStroke")
+rivalsStroke.Name = "UIStroke"
+rivalsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+rivalsStroke.Color = Color3.fromRGB(26, 29, 37)
+rivalsStroke.Thickness = 1.9
+rivalsStroke.Parent = rivals
+
+local uICorner7 = Instance.new("UICorner")
+uICorner7.Name = "UICorner"
+uICorner7.CornerRadius = UDim.new(0, 25)
+uICorner7.Parent = rivals
+
+local textLabel11 = Instance.new("TextLabel")
+textLabel11.Name = "TextLabel"
+textLabel11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabel11.BackgroundTransparency = 1
+textLabel11.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabel11.BorderSizePixel = 0
+textLabel11.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabel11.Position = UDim2.fromScale(0.2, 0.0462)
+textLabel11.Size = UDim2.fromOffset(197, 58)
+textLabel11.Text = "Rivals"
+textLabel11.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel11.TextSize = 62
+textLabel11.TextWrapped = true
+textLabel11.Parent = rivals
+
+rivals.Parent = frame
+
+local autoloadToggle = Instance.new("Frame")
+autoloadToggle.Name = "AutoloadToggle"
+autoloadToggle.Parent = frame
+autoloadToggle.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+autoloadToggle.BackgroundTransparency = 0.9
+autoloadToggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+autoloadToggle.BorderSizePixel = 0
+autoloadToggle.Position = UDim2.new(0.59, 0, 0.55, 0)
+autoloadToggle.Size = UDim2.new(0, 280, 0, 50)
+autoloadToggle.Visible = false
+
+local toggleStroke = Instance.new("UIStroke")
+toggleStroke.Parent = autoloadToggle
+toggleStroke.Color = Color3.fromRGB(26, 29, 37)
+toggleStroke.Thickness = 2
+toggleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+local uICornerToggle = Instance.new("UICorner")
+uICornerToggle.CornerRadius = UDim.new(0, 25)
+uICornerToggle.Parent = autoloadToggle
+
+local toggleLabel = Instance.new("TextLabel")
+toggleLabel.Name = "ToggleLabel"
+toggleLabel.Parent = autoloadToggle
+toggleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+toggleLabel.BackgroundTransparency = 1
+toggleLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+toggleLabel.BorderSizePixel = 0
+toggleLabel.Position = UDim2.new(0.05, 0, 0, 0)
+toggleLabel.Size = UDim2.new(0, 160, 0, 50)
+toggleLabel.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+toggleLabel.Text = "Autoload:"
+toggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleLabel.TextSize = 20
+toggleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Name = "ToggleButton"
+toggleButton.Parent = autoloadToggle
+toggleButton.BackgroundColor3 = Color3.fromRGB(140, 155, 208)
+toggleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+toggleButton.BorderSizePixel = 0
+toggleButton.Position = UDim2.new(0.65, 0, 0.15, 0)
+toggleButton.Size = UDim2.new(0, 80, 0, 35)
+toggleButton.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+toggleButton.Text = "ON"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.TextSize = 18
+toggleButton.TextWrapped = true
+
+local uICornerToggleBtn = Instance.new("UICorner")
+uICornerToggleBtn.CornerRadius = UDim.new(0, 15)
+uICornerToggleBtn.Parent = toggleButton
+
+frame.Parent = z3USLoader
 
 local selectedOption = nil
 local selectedColor = Color3.fromRGB(140, 155, 208)
@@ -412,117 +483,106 @@ local autoloadEnabled = true
 
 local function updateToggleAppearance()
 	if autoloadEnabled then
-		ToggleButton.BackgroundColor3 = Color3.fromRGB(140, 155, 208)
-		ToggleButton.Text = "ON"
+		toggleButton.BackgroundColor3 = Color3.fromRGB(140, 155, 208)
+		toggleButton.Text = "ON"
 	else
-		ToggleButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-		ToggleButton.Text = "OFF"
+		toggleButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+		toggleButton.Text = "OFF"
 	end
 end
 
 local function selectScript(scriptFrame, scriptName)
-	ArsenalStroke.Color = defaultColor
-	PlanksStroke.Color = defaultColor
-	RivalsStroke.Color = defaultColor
-	CounterBloxStroke.Color = defaultColor
-	UniversalStroke.Color = defaultColor
-	GunfightArenaStroke.Color = defaultColor
+	arsenalStroke.Color = defaultColor
+	planksStroke.Color = defaultColor
+	rivalsStroke.Color = defaultColor
+	counterbloxStroke.Color = defaultColor
+	universalStroke.Color = defaultColor
+	gunfightArenaStroke.Color = defaultColor
 
-	AutoloadToggle.Visible = false
+	autoloadToggle.Visible = false
 
 	if scriptFrame then
 		scriptFrame:FindFirstChildOfClass("UIStroke").Color = selectedColor
 		selectedOption = scriptName
-		SelectedScript.Text = scriptName
-		
+		textLabel6.Text = scriptName
+
 		if scriptName == "Rivals" then
-			AutoloadToggle.Visible = true
+			autoloadToggle.Visible = true
 			updateToggleAppearance()
 		end
 	else
 		selectedOption = nil
-		SelectedScript.Text = "No Script Selected"
+		textLabel6.Text = "No Script Selected"
 	end
 end
 
-Arsenal.InputBegan:Connect(function(input)
+arsenal.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		selectScript(Arsenal, "Arsenal")
+		selectScript(arsenal, "Arsenal")
 	end
 end)
 
-Planks.InputBegan:Connect(function(input)
+planks.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		selectScript(Planks, "Planks")
+		selectScript(planks, "Planks")
 	end
 end)
 
-Rivals.InputBegan:Connect(function(input)
+rivals.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		selectScript(Rivals, "Rivals")
+		selectScript(rivals, "Rivals")
 	end
 end)
 
-CounterBlox.InputBegan:Connect(function(input)
+counterblox.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		selectScript(CounterBlox, "CounterBlox")
+		selectScript(counterblox, "Counterblox")
 	end
 end)
 
-GunfightArena.InputBegan:Connect(function(input)
+gunfightArena.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		selectScript(GunfightArena, "Gunfight Arena")
+		selectScript(gunfightArena, "Gunfight Arena")
 	end
 end)
 
-Universal.InputBegan:Connect(function(input)
+universal.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		selectScript(Universal, "Universal")
+		selectScript(universal, "Universal")
 	end
 end)
 
-ToggleButton.MouseButton1Click:Connect(function()
+toggleButton.MouseButton1Click:Connect(function()
 	autoloadEnabled = not autoloadEnabled
 	updateToggleAppearance()
 end)
 
-Loadbtn.MouseButton1Click:Connect(function()
+loadbtn.MouseButton1Click:Connect(function()
 	if selectedOption then
-
 		if selectedOption == "Arsenal" then
-			if game.PlaceId == 286090429 then
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Arsenal%20Beta.lua"))()
-			else
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20A3%20CTE.lua"))()
-			end
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Arsenal%20Beta.lua"))()
 		elseif selectedOption == "Planks" then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Planks.lua"))()
 		elseif selectedOption == "Rivals" then
-			local value = ""
-			if autoloadEnabled then
-				value = true
-			else
-				value = false
-			end
-			getgenv().autoload = value
+			getgenv().autoload = autoloadEnabled
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Rivals%20Beta.lua"))()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Test.lua"))()
-		elseif selectedOption == "CounterBlox" then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/ZYPHERION%20Counterblox.lua"))()
+		elseif selectedOption == "Counterblox" then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/ZYPHERION%20Counterblox.lua))()
 		elseif selectedOption == "Gunfight Arena" then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Gunfight%20Arena.lua"))()
 		elseif selectedOption == "Universal" then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Universal.lua"))()
 		end
 	else
-		SelectedScript.Text = "Please select a script!"
+		textLabel6.Text = "Please select a script!"
 		wait(2)
-		SelectedScript.Text = "No Script Selected"
+		textLabel6.Text = "{Selected Script}"
 	end
 end)
 
-CloseButton.MouseButton1Click:Connect(function()
-	ScreenGui:Destroy()
+closeButton.MouseButton1Click:Connect(function()
+	z3USLoader:Destroy()
 end)
 
 updateToggleAppearance()
