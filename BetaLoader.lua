@@ -3,7 +3,6 @@ local z3USLoader = Instance.new("ScreenGui")
 z3USLoader.Name = "Z3US Loader"
 z3USLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 z3USLoader.Parent = game:GetService("CoreGui")
-z3USLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 z3USLoader.ResetOnSpawn = false
 z3USLoader.DisplayOrder = 999999
 z3USLoader.IgnoreGuiInset = true
@@ -49,39 +48,15 @@ uICorner.Name = "UICorner"
 uICorner.CornerRadius = UDim.new(0, 25)
 uICorner.Parent = frame
 
-local textLabel = Instance.new("TextLabel")
-textLabel.Name = "TextLabel"
-textLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-textLabel.BackgroundTransparency = 1
-textLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-textLabel.BorderSizePixel = 0
-textLabel.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
-textLabel.Position = UDim2.fromScale(0.571, 0.219)
-textLabel.Size = UDim2.fromOffset(316, 63)
-textLabel.Text = "Z3US"
-textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-textLabel.TextScaled = true
-textLabel.TextSize = 14
-textLabel.TextWrapped = true
-
-local textLabel1 = Instance.new("TextLabel")
-textLabel1.Name = "TextLabel"
-textLabel1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-textLabel1.BackgroundTransparency = 1
-textLabel1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-textLabel1.BorderSizePixel = 0
-textLabel1.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
-textLabel1.Position = UDim2.fromScale(0, 0.619)
-textLabel1.Size = UDim2.fromOffset(408, 244)
-textLabel1.Text = ""
-textLabel1.TextColor3 = Color3.fromRGB(255, 255, 255)
-textLabel1.TextScaled = true
-textLabel1.TextSize = 14
-textLabel1.TextTransparency = 0.4
-textLabel1.TextWrapped = true
-textLabel1.Parent = textLabel
-
-textLabel.Parent = frame
+local logo = Instance.new("ImageLabel")
+logo.Name = "Logo"
+logo.BackgroundTransparency = 1
+logo.BorderSizePixel = 0
+logo.Image = "rbxassetid://92661965333918"
+logo.Position = UDim2.fromScale(0.755, 0.2)
+logo.AnchorPoint = Vector2.new(0.5, 0.5)
+logo.Size = UDim2.fromOffset(175, 175)
+logo.Parent = frame
 
 local arsenal = Instance.new("Frame")
 arsenal.Name = "Arsenal"
@@ -166,44 +141,6 @@ uIStroke1.Parent = closeButton
 
 closeButton.Parent = frame
 
-local textLabel3 = Instance.new("TextLabel")
-textLabel3.Name = "TextLabel"
-textLabel3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-textLabel3.BackgroundTransparency = 1
-textLabel3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-textLabel3.BorderSizePixel = 0
-textLabel3.FontFace = Font.new(
-	"rbxasset://fonts/families/Bangers.json",
-	Enum.FontWeight.Bold,
-	Enum.FontStyle.Italic
-)
-textLabel3.Position = UDim2.fromScale(0.692, 0.0562)
-textLabel3.Size = UDim2.fromOffset(70, 89)
-textLabel3.Text = "Z"
-textLabel3.TextColor3 = Color3.fromRGB(255, 255, 255)
-textLabel3.TextScaled = true
-textLabel3.TextSize = 14
-textLabel3.TextWrapped = true
-
-local textLabel4 = Instance.new("TextLabel")
-textLabel4.Name = "TextLabel"
-textLabel4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-textLabel4.BackgroundTransparency = 1
-textLabel4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-textLabel4.BorderSizePixel = 0
-textLabel4.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
-textLabel4.Position = UDim2.fromScale(0, 0.619)
-textLabel4.Size = UDim2.fromOffset(408, 244)
-textLabel4.Text = ""
-textLabel4.TextColor3 = Color3.fromRGB(255, 255, 255)
-textLabel4.TextScaled = true
-textLabel4.TextSize = 14
-textLabel4.TextTransparency = 0.4
-textLabel4.TextWrapped = true
-textLabel4.Parent = textLabel3
-
-textLabel3.Parent = frame
-
 local textLabel5 = Instance.new("TextLabel")
 textLabel5.Name = "TextLabel"
 textLabel5.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
@@ -223,7 +160,7 @@ textLabel6.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 textLabel6.BorderColor3 = Color3.fromRGB(0, 0, 0)
 textLabel6.BorderSizePixel = 0
 textLabel6.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
-textLabel6.Position = UDim2.fromScale(0.628, 0.447)
+textLabel6.Position = UDim2.fromScale(0.645, 0.447)
 textLabel6.Size = UDim2.fromOffset(200, 50)
 textLabel6.Text = "No Script Selected"
 textLabel6.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -427,7 +364,7 @@ autoloadToggle.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 autoloadToggle.BackgroundTransparency = 0.9
 autoloadToggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 autoloadToggle.BorderSizePixel = 0
-autoloadToggle.Position = UDim2.new(0.59, 0, 0.55, 0)
+autoloadToggle.Position = UDim2.new(0.60, 0, 0.55, 0)
 autoloadToggle.Size = UDim2.new(0, 280, 0, 50)
 autoloadToggle.Visible = false
 
@@ -480,6 +417,62 @@ local selectedOption = nil
 local selectedColor = Color3.fromRGB(140, 155, 208)
 local defaultColor = Color3.fromRGB(26, 29, 37)
 local autoloadEnabled = true
+local version = "New"
+
+local VersionToggle = Instance.new("Frame")
+VersionToggle.Name = "AutoloadToggle"
+VersionToggle.Parent = frame
+VersionToggle.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+VersionToggle.BackgroundTransparency = 0.9
+VersionToggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+VersionToggle.BorderSizePixel = 0
+VersionToggle.Position = UDim2.new(0.60, 0, 0.55, 0)
+VersionToggle.Size = UDim2.new(0, 280, 0, 50)
+VersionToggle.Visible = false
+
+local versoiontoggleStroke = Instance.new("UIStroke")
+versoiontoggleStroke.Parent = VersionToggle
+versoiontoggleStroke.Color = Color3.fromRGB(26, 29, 37)
+versoiontoggleStroke.Thickness = 2
+versoiontoggleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+local uICornerversionToggle = Instance.new("UICorner")
+uICornerversionToggle.CornerRadius = UDim.new(0, 25)
+uICornerversionToggle.Parent = VersionToggle
+
+local versionLabel = Instance.new("TextLabel")
+versionLabel.Name = "versionLabel"
+versionLabel.Parent = VersionToggle
+versionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+versionLabel.BackgroundTransparency = 1
+versionLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+versionLabel.BorderSizePixel = 0
+versionLabel.Position = UDim2.new(0.05, 0, 0, 0)
+versionLabel.Size = UDim2.new(0, 160, 0, 50)
+versionLabel.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+versionLabel.Text = "Version:"
+versionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+versionLabel.TextSize = 20
+versionLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+local versionButton = Instance.new("TextButton")
+versionButton.Name = "versionButton"
+versionButton.Parent = VersionToggle
+versionButton.BackgroundColor3 = Color3.fromRGB(140, 155, 208)
+versionButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+versionButton.BorderSizePixel = 0
+versionButton.Position = UDim2.new(0.65, 0, 0.15, 0)
+versionButton.Size = UDim2.new(0, 80, 0, 35)
+versionButton.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+versionButton.Text = "New"
+versionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+versionButton.TextSize = 18
+versionButton.TextWrapped = true
+
+local uICornerversionButton = Instance.new("UICorner")
+uICornerversionButton.CornerRadius = UDim.new(0, 15)
+uICornerversionButton.Parent = versionButton
+
 
 local function updateToggleAppearance()
 	if autoloadEnabled then
@@ -489,7 +482,16 @@ local function updateToggleAppearance()
 		toggleButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 		toggleButton.Text = "OFF"
 	end
+
+	if version == "New" then
+		versionButton.BackgroundColor3 = Color3.fromRGB(140, 155, 208)
+		versionButton.Text = "New"
+	else
+		versionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+		versionButton.Text = "Old"
+	end
 end
+
 
 local function selectScript(scriptFrame, scriptName)
 	arsenalStroke.Color = defaultColor
@@ -500,6 +502,7 @@ local function selectScript(scriptFrame, scriptName)
 	gunfightArenaStroke.Color = defaultColor
 
 	autoloadToggle.Visible = false
+	VersionToggle.Visible = false
 
 	if scriptFrame then
 		scriptFrame:FindFirstChildOfClass("UIStroke").Color = selectedColor
@@ -510,7 +513,12 @@ local function selectScript(scriptFrame, scriptName)
 			autoloadToggle.Visible = true
 			updateToggleAppearance()
 		end
-	else
+
+		if scriptName == "Counterblox" then
+			VersionToggle.Visible = true
+			updateToggleAppearance()
+		end
+	else 
 		selectedOption = nil
 		textLabel6.Text = "No Script Selected"
 	end
@@ -557,10 +565,15 @@ toggleButton.MouseButton1Click:Connect(function()
 	updateToggleAppearance()
 end)
 
+versionButton.MouseButton1Click:Connect(function()
+	version = if version == "Old" then "New" else "Old"
+	updateToggleAppearance()
+end)
+
 loadbtn.MouseButton1Click:Connect(function()
 	if selectedOption then
 		if selectedOption == "Arsenal" then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Arsenal%20Beta.lua"))()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Arsenal%20V3.lua"))()
 		elseif selectedOption == "Planks" then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Planks.lua"))()
 		elseif selectedOption == "Rivals" then
@@ -568,7 +581,11 @@ loadbtn.MouseButton1Click:Connect(function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Rivals%20Beta.lua"))()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Test.lua"))()
 		elseif selectedOption == "Counterblox" then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/ZYPHERION%20Counterblox.lua"))()
+			if version == "New" then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Counterblox%20New.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Counterblox.lua"))()
+			end
 		elseif selectedOption == "Gunfight Arena" then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Gunfight%20Arena.lua"))()
 		elseif selectedOption == "Universal" then
