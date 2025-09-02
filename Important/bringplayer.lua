@@ -5,6 +5,7 @@ local idkbruh = {
 local camera = workspace.CurrentCamera
 local runService = game:GetService("RunService")
 local LocalPlayer = game.Players.LocalPlayer
+local Players = game.Players
 
 runService.RenderStepped:Connect(function()
     if idkbruh.bringplayers then 
@@ -34,4 +35,6 @@ runService.RenderStepped:Connect(function()
     end
 end)
 
-return idkbruh
+return {
+	BringPlayers = idkbruh
+}
