@@ -1,11 +1,13 @@
-local bringplayers = false
+local idkbruh = {
+    bringplayers = false
+}
 
 local camera = workspace.CurrentCamera
 local runService = game:GetService("RunService")
 local LocalPlayer = game.Players.LocalPlayer
 
 runService.RenderStepped:Connect(function()
-    if bringplayers then 
+    if idkbruh.bringplayers then 
         for _, v in workspace:FindFirstChild("Mobs"):GetChildren() do
             if (LocalPlayer.Character and LocalPlayer.Character:GetAttribute("Team") ~= -1) and (v:GetAttribute("Team") == LocalPlayer.Character:GetAttribute("Team")) then
                 continue
@@ -31,3 +33,5 @@ runService.RenderStepped:Connect(function()
         end
     end
 end)
+
+return idkbruh
