@@ -234,7 +234,7 @@ local function updateESP()
                 distanceDrawing.Outline = settings.distance.outline.enabled
                 distanceDrawing.OutlineColor = settings.distance.outline.color
                 
-                local weapon = character:FindFirstChildWhichIsA("Tool") or "none"
+                local weapon = "none"
                 local weaponDrawing = data.drawings.weapon
                 weaponDrawing.Text = weapon
                 weaponDrawing.Size = math.max(math.min(math.abs(11 * scale), 11), 10)
