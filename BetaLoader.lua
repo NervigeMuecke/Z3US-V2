@@ -13,7 +13,7 @@ frame.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 frame.BorderSizePixel = 0
 frame.Position = UDim2.fromScale(0.0883, 0.11)
-frame.Size = UDim2.fromOffset(878, 524)
+frame.Size = UDim2.fromOffset(878, 550)
 
 frame.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -173,7 +173,7 @@ planks.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 planks.BackgroundTransparency = 0.9
 planks.BorderColor3 = Color3.fromRGB(0, 0, 0)
 planks.BorderSizePixel = 0
-planks.Position = UDim2.fromScale(0.03, 0.188)
+planks.Position = UDim2.fromScale(0.03, 0.17786)
 planks.Size = UDim2.fromOffset(330, 65)
 
 local planksStroke = Instance.new("UIStroke")
@@ -205,13 +205,51 @@ textLabel7.Parent = planks
 
 planks.Parent = frame
 
+local hypershot = Instance.new("Frame")
+hypershot.Name = "Hypershot"
+hypershot.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
+hypershot.BackgroundTransparency = 0.9
+hypershot.BorderColor3 = Color3.fromRGB(0, 0, 0)
+hypershot.BorderSizePixel = 0
+hypershot.Position = UDim2.fromScale(0.03, 0.58694)
+hypershot.Size = UDim2.fromOffset(330, 65)
+
+local hypershotStroke = Instance.new("UIStroke")
+hypershotStroke.Name = "UIStroke"
+hypershotStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+hypershotStroke.Color = Color3.fromRGB(26, 29, 37)
+hypershotStroke.Thickness = 1.9
+hypershotStroke.Parent = hypershot
+
+local uICornerHypershot = Instance.new("UICorner")
+uICornerHypershot.Name = "UICorner"
+uICornerHypershot.CornerRadius = UDim.new(0, 25)
+uICornerHypershot.Parent = hypershot
+
+local textLabelHypershot = Instance.new("TextLabel")
+textLabelHypershot.Name = "TextLabel"
+textLabelHypershot.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textLabelHypershot.BackgroundTransparency = 1
+textLabelHypershot.BorderColor3 = Color3.fromRGB(0, 0, 0)
+textLabelHypershot.BorderSizePixel = 0
+textLabelHypershot.FontFace = Font.new("rbxasset://fonts/families/Nunito.json")
+textLabelHypershot.Position = UDim2.fromScale(0.15, 0.0462)
+textLabelHypershot.Size = UDim2.fromOffset(250, 58)
+textLabelHypershot.Text = "Hypershot"
+textLabelHypershot.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabelHypershot.TextSize = 62
+textLabelHypershot.TextWrapped = true
+textLabelHypershot.Parent = hypershot
+
+hypershot.Parent = frame
+
 local universal = Instance.new("Frame")
 universal.Name = "Universal"
 universal.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 universal.BackgroundTransparency = 0.9
 universal.BorderColor3 = Color3.fromRGB(0, 0, 0)
 universal.BorderSizePixel = 0
-universal.Position = UDim2.fromScale(0.0289, 0.806)
+universal.Position = UDim2.fromScale(0.03, 0.7233)
 universal.Size = UDim2.fromOffset(330, 65)
 
 local universalStroke = Instance.new("UIStroke")
@@ -249,7 +287,7 @@ gunfightArena.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 gunfightArena.BackgroundTransparency = 0.9
 gunfightArena.BorderColor3 = Color3.fromRGB(0, 0, 0)
 gunfightArena.BorderSizePixel = 0
-gunfightArena.Position = UDim2.fromScale(0.03, 0.65)
+gunfightArena.Position = UDim2.fromScale(0.03, 0.45058)
 gunfightArena.Size = UDim2.fromOffset(330, 65)
 
 local gunfightArenaStroke = Instance.new("UIStroke")
@@ -287,7 +325,7 @@ counterblox.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 counterblox.BackgroundTransparency = 0.9
 counterblox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 counterblox.BorderSizePixel = 0
-counterblox.Position = UDim2.fromScale(0.0277, 0.489)
+counterblox.Position = UDim2.fromScale(0.03, 0.31422)
 counterblox.Size = UDim2.fromOffset(330, 65)
 
 local counterbloxStroke = Instance.new("UIStroke")
@@ -325,7 +363,7 @@ rivals.BackgroundColor3 = Color3.fromRGB(17, 18, 20)
 rivals.BackgroundTransparency = 0.9
 rivals.BorderColor3 = Color3.fromRGB(0, 0, 0)
 rivals.BorderSizePixel = 0
-rivals.Position = UDim2.fromScale(0.0289, 0.34)
+rivals.Position = UDim2.fromScale(0.03, 0.85966)
 rivals.Size = UDim2.fromOffset(330, 65)
 
 local rivalsStroke = Instance.new("UIStroke")
@@ -500,6 +538,7 @@ local function selectScript(scriptFrame, scriptName)
 	counterbloxStroke.Color = defaultColor
 	universalStroke.Color = defaultColor
 	gunfightArenaStroke.Color = defaultColor
+	hypershotStroke.Color = defaultColor
 
 	autoloadToggle.Visible = false
 	VersionToggle.Visible = false
@@ -533,6 +572,12 @@ end)
 planks.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
 		selectScript(planks, "Planks")
+	end
+end)
+
+hypershot.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		selectScript(hypershot, "Hypershot")
 	end
 end)
 
@@ -576,13 +621,15 @@ loadbtn.MouseButton1Click:Connect(function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Z3US%20Arsenal%20V3.lua"))()
 		elseif selectedOption == "Planks" then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Planks.lua"))()
+		elseif selectedOption == "Hypershot" then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Hypershot.lua"))()
 		elseif selectedOption == "Rivals" then
 			getgenv().autoload = autoloadEnabled
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Games/Zypherion%20Rivals%20Beta.lua"))()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Rivals%20Beta.lua"))()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Test.lua"))()
 		elseif selectedOption == "Counterblox" then
 			if version == "New" then
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Counterblox%20New.lua"))()
+				loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/256e863c25cb837e"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/blackowl1231/Z3US/refs/heads/main/Games/Z3US%20Counterblox.lua"))()
 			end
