@@ -2426,29 +2426,20 @@ local Library do
     end
 
     Library.RefreshConfigsList = function(self, Element)
-        local CurrentList = { }
-        local List = { }
-
         local ConfigFolderName = StringGSub(Library.Folders.Configs, Library.Folders.Directory .. "/", "")
-
-        for Index, Value in listfiles(Library.Folders.Configs) do
-            local FileName = StringGSub(Value, Library.Folders.Directory .. "\\" .. ConfigFolderName .. "\\", "")
-            List[Index] = FileName
+        
+        local files = listfiles(Library.Folders.Configs)
+        local newList = {}
+        
+        for _, fullPath in ipairs(files) do
+            local fileName = fullPath:match("([^/\\]+)$")
+            
+            table.insert(newList, fileName)
         end
-
-        local IsNew = #List ~= CurrentList
-
-        if not IsNew then
-            for Index = 1, #List do
-                if List[Index] ~= CurrentList[Index] then
-                    IsNew = true
-                    break
-                end
-            end
-        else
-            CurrentList = List
-            Element:Refresh(CurrentList)
-        end
+        
+        Element:Refresh(newList)
+        
+        return newList
     end
 
     Library.ChangeItemTheme = function(self, Item, Properties)
