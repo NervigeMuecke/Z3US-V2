@@ -6988,7 +6988,7 @@ local Library do
                     Name = "\0",
                     BorderColor3 = FromRGB(0, 0, 0),
                     AnchorPoint = Vector2New(0.5, 0),
-                    Position = UDim2.new(0, 10, 0, 10),
+                    Position = UDim2.new(0, 149, 0, 11),
                     Size = UDim2New(0, 100, 0, 35),
                     BorderSizePixel = 0,
                     AutomaticSize = Enum.AutomaticSize.X,
@@ -10111,6 +10111,5 @@ local Library do
         end
     end
 end 
-
 getgenv().Library = Library
 return Library
