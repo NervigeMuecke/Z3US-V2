@@ -2539,29 +2539,26 @@ local Library do
     end
 
     Library.RefreshThemesList = function(self, Element)
-        local CurrentList = { }
-        local List = { }
-
-        local ConfigFolderName = StringGSub(Library.Folders.Themes, Library.Folders.Directory .. "/", "")
-
-        for Index, Value in listfiles(Library.Folders.Themes) do
-            local FileName = StringGSub(Value, Library.Folders.Directory .. "\\" .. ConfigFolderName .. "\\", "")
-            List[Index] = FileName
+        if not isfolder(Library.Folders.Themes) then
+            Element:Refresh({})
+            return {}
         end
-
-        local IsNew = #List ~= CurrentList
-
-        if not IsNew then
-            for Index = 1, #List do
-                if List[Index] ~= CurrentList[Index] then
-                    IsNew = true
-                    break
-                end
+        
+        local themeList = {}
+        local files = listfiles(Library.Folders.Themes)
+    
+        for _, fullPath in ipairs(files) do
+            local fileName = string.match(fullPath, "([^/\\]+)$")
+            
+            if fileName then
+                local displayName = fileName:gsub("%.json$", ""):gsub("%.txt$", "")
+                table.insert(themeList, displayName)
             end
-        else
-            CurrentList = List
-            Element:Refresh(CurrentList)
         end
+
+        Element:Refresh(themeList)
+        
+        return themeList
     end
 
     Library.GetLighterColor = function(self, Color, Increment)
