@@ -1494,6 +1494,8 @@ local Library do
 
     getgenv().Options = { }
 
+    local gameID = game.GameId
+
     -- Library
     Library = {
         Theme = nil,
@@ -1508,10 +1510,10 @@ local Library do
         },
 
         Folders = {
-            Directory = "Z3US/NSA",
-            Configs = "Z3US/NSA/Configs",
-            Assets = "Z3US/NSA/Assets",
-            Themes = "Z3US/NSA/Themes"
+            Directory = "Z3US/SkinChanger/",
+            Configs = "Z3US/SkinChanger/".. gameID .."/Configs",
+            Assets = "Z3US/SkinChanger/Assets",
+            Themes = "Z3US/SkinChanger/Themes"
         },
 
         Images = { -- you're welcome to reupload the images and replace it with your own links
