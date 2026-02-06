@@ -2202,6 +2202,33 @@ local Library do
             ["Border"] = FromRGB(48, 56, 63)
         },
 
+        ["Ocean"] = {
+            ["Background"] = FromRGB(10, 25, 47),
+            ["Inline"] = FromRGB(15, 35, 62),
+            ["Shadow"] = FromRGB(0, 150, 255),
+            ["Text"] = FromRGB(240, 248, 255),
+            ["Image"] = FromRGB(255, 255, 255),
+            ["Dark Gradient"] = FromRGB(200, 230, 255),
+            ["Inactive Text"] = FromRGB(160, 200, 230),
+            ["Element"] = FromRGB(25, 45, 77),
+            ["Accent"] = FromRGB(0, 150, 255),
+            ["Border"] = FromRGB(20, 40, 70)
+        },
+
+        ["Dracula"] = {
+            ["Background"] = FromRGB(40, 42, 54),
+            ["Inline"] = FromRGB(50, 52, 64),
+            ["Shadow"] = FromRGB(189, 147, 249),
+            ["Text"] = FromRGB(248, 248, 242),
+            ["Image"] = FromRGB(255, 255, 255),
+            ["Dark Gradient"] = FromRGB(220, 220, 210),
+            ["Inactive Text"] = FromRGB(180, 180, 170),
+            ["Element"] = FromRGB(60, 62, 74),
+            ["Accent"] = FromRGB(189, 147, 249),
+            ["Border"] = FromRGB(55, 57, 69)
+        },
+
+
         ["One Tap"] = {
             ["Background"] = FromRGB(51, 51, 51),
             ["Inline"] = FromRGB(30, 30, 30),
@@ -10129,6 +10156,6 @@ local Library do
             end
         end
     end
-end 
+end
 getgenv().Library = Library
 return Library
