@@ -2239,7 +2239,7 @@ local Library do
             ["Dark Gradient"] = FromRGB(200, 202, 205),
             ["Inactive Text"] = FromRGB(155, 157, 160),
             ["Element"] = FromRGB(42, 43, 48),
-            ["Accent"] = FromRGB(0, 175, 244),
+            ["Accent"] = FromRGB(156, 238, 72),
             ["Border"] = FromRGB(50, 51, 56)
         },
 
