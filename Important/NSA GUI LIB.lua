@@ -2202,6 +2202,8 @@ local Library do
             ["Border"] = FromRGB(48, 56, 63)
         },
 
+        
+
         ["Ocean"] = {
             ["Background"] = FromRGB(10, 25, 47),
             ["Inline"] = FromRGB(15, 35, 62),
@@ -2228,6 +2230,18 @@ local Library do
             ["Border"] = FromRGB(55, 57, 69)
         },
 
+        ["Skeet"] = {
+            ["Background"] = FromRGB(28, 29, 33),
+            ["Inline"] = FromRGB(35, 36, 40),
+            ["Shadow"] = FromRGB(0, 0, 0),
+            ["Text"] = FromRGB(248, 249, 250),
+            ["Image"] = FromRGB(255, 255, 255),
+            ["Dark Gradient"] = FromRGB(200, 202, 205),
+            ["Inactive Text"] = FromRGB(155, 157, 160),
+            ["Element"] = FromRGB(42, 43, 48),
+            ["Accent"] = FromRGB(0, 175, 244),
+            ["Border"] = FromRGB(50, 51, 56)
+        },
 
         ["One Tap"] = {
             ["Background"] = FromRGB(51, 51, 51),
