@@ -1494,7 +1494,36 @@ local Library do
 
     getgenv().Options = { }
 
-    local gameID = game.GameId
+    local MarketplaceService = game:GetService("MarketplaceService")
+    local tomboyname = "OtherGame"
+    pcall(function()
+        tomboyname = MarketplaceService:GetProductInfo(game.PlaceId).Name
+    end)
+
+    local function femboyname(name)
+        local femboyidk = string.gsub(name, "[%z\1-\127\194-\244][\128-\191]*", function(char)
+            if string.byte(char) >= 32 and string.byte(char) <= 126 then
+                return char
+            else
+                return ""
+            end
+        end)
+        
+        femboyidk = string.gsub(femboyidk, "%s+", "_")
+        
+        femboyidk = string.gsub(femboyidk, "[<>:\"/\\|?*]", "")
+        femboyidk = string.gsub(femboyidk, "_+", "_")
+        femboyidk = string.gsub(femboyidk, "^_+", "")
+        femboyidk = string.gsub(femboyidk, "_+$", "")
+
+        if femboyidk == "" or string.len(femboyidk) == 0 then
+            return "OtherGame"
+        end
+        
+        return femboyidk
+    end
+
+    local cleanfemboyname = femboyname(tomboyname)
 
     -- Library
     Library = {
@@ -1511,7 +1540,7 @@ local Library do
 
         Folders = {
             Directory = "Z3US/SkinChanger/",
-            Configs = "Z3US/SkinChanger/".. gameID .."/Configs",
+            Configs = "Z3US/SkinChanger/".. femboyname .."/Configs",
             Assets = "Z3US/SkinChanger/Assets",
             Themes = "Z3US/SkinChanger/Themes"
         },
