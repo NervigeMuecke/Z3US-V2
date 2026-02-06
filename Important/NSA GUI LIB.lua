@@ -1540,7 +1540,7 @@ local Library do
 
         Folders = {
             Directory = "Z3US/SkinChanger/",
-            Configs = "Z3US/SkinChanger/".. femboyname .."/Configs",
+            Configs = "Z3US/SkinChanger/".. cleanfemboyname .."/Configs",
             Assets = "Z3US/SkinChanger/Assets",
             Themes = "Z3US/SkinChanger/Themes"
         },
