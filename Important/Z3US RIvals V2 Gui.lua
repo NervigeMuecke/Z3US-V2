@@ -60,10 +60,10 @@
 
 -- Library init
     getgenv().library = {
-        directory = "Z3US",
+        directory = "Z3US/Rivals",
         folders = {
-            "Rivals/fonts",
-            "Rivals/configs",
+            "/fonts",
+            "/configs",
         },
         flags = {},
         config_flags = {},
@@ -145,7 +145,10 @@
     library.__index = library
 
     for _, path in next, library.folders do 
-        makefolder(library.directory .. path)
+        local folder_path = library.directory .. path
+        if not isfolder(folder_path) then
+            makefolder(folder_path)
+        end
     end
 
     local flags = library.flags 
@@ -365,14 +368,21 @@
                 return 
             end
             
-            local list = {}
-            
-            for idx, file in listfiles(library.directory .. "/configs") do
-                local name = file:gsub(library.directory .. "/configs\\", ""):gsub(".cfg", ""):gsub(library.directory .. "\\configs\\", "")
+            local config_folder = library.directory .. "/configs"
+        if not isfolder(config_folder) then
+            makefolder(config_folder)
+        end
+
+        local list = {}
+
+        for idx, file in listfiles(config_folder) do
+            local name = file:match("([^\\/]+)%.cfg$")
+            if name and name ~= "" then
                 list[#list + 1] = name
             end
+        end
 
-            config_holder.refresh_options(list)
+        config_holder.refresh_options(list)
         end 
 
         function library:get_config()
@@ -3557,6 +3567,9 @@
                         end
 
                         flags[cfg.flag] = option_data
+                        if cfg.flag == "config_name_list" then
+                            flags["config_name_text"] = option_data
+                        end
                         cfg.callback(option_data)
                         library:tween(name, {TextColor3 = rgb(245, 245, 245)})
                         cfg.current_element = name
@@ -3596,11 +3609,49 @@
             local column = main:column({})
             local section = column:section({name = "Settings", side = "right", size = 1, default = true, icon = "rbxassetid://129380150574313"})
             section:textbox({name = "Config name:", flag = "config_name_text"})
-            section:button({name = "Save", callback = function() writefile(library.directory .. "/configs/" .. flags["config_name_text"] or flags["config_name_list"] .. ".cfg", library:get_config()) library:update_config_list() notifications:create_notification({name = "Configs", info = "Saved config to:\n" .. flags["config_name_list"] or flags["config_name_text"]}) end}) 
-            section:button({name = "Load", callback = function() library:load_config(readfile(library.directory .. "/configs/" .. flags["config_name_list"] .. ".cfg"))  library:update_config_list() notifications:create_notification({name = "Configs", info = "Loaded config:\n" .. flags["config_name_list"]}) end})
-            section:button({name = "Delete", callback = function() delfile(library.directory .. "/configs/" .. flags["config_name_list"] .. ".cfg")  library:update_config_list() notifications:create_notification({name = "Configs", info = "Deleted config:\n" .. flags["config_name_list"]}) end})
+            section:button({name = "Save", callback = function()
+                local config_name = tostring(flags["config_name_text"] or flags["config_name_list"] or "")
+                config_name = config_name:match("^%s*(.-)%s*$") or ""
+                if config_name ~= "" then
+                    local path = library.directory .. "/configs/" .. config_name .. ".cfg"
+                    writefile(path, library:get_config())
+                    library:update_config_list()
+                    notifications:create_notification({name = "Configs", info = "Saved config to:\n" .. config_name})
+                end
+            end})
+            section:button({name = "Load", callback = function()
+                local config_name = tostring(flags["config_name_list"] or flags["config_name_text"] or "")
+                config_name = config_name:match("^%s*(.-)%s*$") or ""
+                if config_name ~= "" then
+                    local path = library.directory .. "/configs/" .. config_name .. ".cfg"
+                    local ok, config_json = pcall(readfile, path)
+                    if ok and config_json then
+                        library:load_config(config_json)
+                        library:update_config_list()
+                        notifications:create_notification({name = "Configs", info = "Loaded config:\n" .. config_name})
+                    else
+                        notifications:create_notification({name = "Configs", info = "Config not found:\n" .. config_name})
+                    end
+                end
+            end})
+            section:button({name = "Delete", callback = function()
+                local config_name = tostring(flags["config_name_list"] or flags["config_name_text"] or "")
+                config_name = config_name:match("^%s*(.-)%s*$") or ""
+                if config_name ~= "" then
+                    local path = library.directory .. "/configs/" .. config_name .. ".cfg"
+                    local ok = pcall(delfile, path)
+                    if ok then
+                        flags["config_name_list"] = nil
+                        flags["config_name_text"] = nil
+                        library:update_config_list()
+                        notifications:create_notification({name = "Configs", info = "Deleted config:\n" .. config_name})
+                    else
+                        notifications:create_notification({name = "Configs", info = "Config not found:\n" .. config_name})
+                    end
+                end
+            end})
             section:colorpicker({name = "Menu Accent", callback = function(color, alpha) library:update_theme("accent", color) end, color = themes.preset.accent})
-            section:keybind({name = "Menu Bind", callback = function(bool) window.toggle_menu(bool) end, default = true})
+            section:keybind({name = "Menu Bind", key = Enum.KeyCode.RightShift, callback = function(bool) window.toggle_menu(bool) end, default = true})
         end
     --
 
