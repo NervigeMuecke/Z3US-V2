@@ -1917,6 +1917,7 @@
                 scrolling = options.scrolling or false;
 
                 width = options.width or 130;
+                height = options.height and tonumber(options.height) or 150;
 
                 -- Ignore these 
                 open = false;
@@ -1952,7 +1953,7 @@
                         FontFace = fonts.small;
                         TextColor3 = rgb(245, 245, 245);
                         BorderColor3 = rgb(0, 0, 0);
-                        Text = "Dropdown";
+                        Text = cfg.name;
                         Parent = items[ "dropdown_object" ];
                         Name = "\0";
                         Size = dim2(1, 0, 0, 0);
@@ -2145,22 +2146,33 @@
             end
             
             function cfg.set_visible(bool)
-                local maxHeight = 200
-                local contentHeight = items[ "dropdown_layout" ].AbsoluteContentSize.Y
-                local desiredHeight = math.max(cfg.y_size or 0, contentHeight or 0)
-                local actualHeight = bool and math.min(desiredHeight, maxHeight) or 0
-
+                local actualHeight
+                
                 if bool then
-                    items[ "dropdown_holder" ].Visible = true
+                    if cfg.height then
+                        actualHeight = cfg.height
+                    else
+                        local maxHeight = 200
+                        local contentHeight = items["dropdown_layout"].AbsoluteContentSize.Y
+                        local desiredHeight = math.max(cfg.y_size or 0, contentHeight or 0)
+                        actualHeight = math.min(desiredHeight, maxHeight)
+                    end
+                else
+                    actualHeight = 0
                 end
 
-                local tween = library:tween(items[ "dropdown_holder" ], {Size = dim_offset(cfg.width, actualHeight)})
-                items[ "dropdown_holder" ].Position = dim2(0, items[ "dropdown" ].AbsolutePosition.X, 0, items[ "dropdown" ].AbsolutePosition.Y + items[ "dropdown" ].AbsoluteSize.Y + 2)
+                if bool then
+                    items["dropdown_holder"].Size = dim_offset(cfg.width, 0)
+                    items["dropdown_holder"].Visible = true
+                end
+
+                items["dropdown_holder"].Position = dim2(0, items["dropdown"].AbsolutePosition.X, 0, items["dropdown"].AbsolutePosition.Y + items["dropdown"].AbsoluteSize.Y + 2)
+                library:tween(items["dropdown_holder"], {Size = dim_offset(cfg.width, actualHeight)})
 
                 if not bool then
-                    task.delay(0.18, function()
-                        if items[ "dropdown_holder" ] and items[ "dropdown_holder" ].Parent then
-                            items[ "dropdown_holder" ].Visible = false
+                    task.delay(0.25, function()
+                        if items["dropdown_holder"] and items["dropdown_holder"].Parent then
+                            items["dropdown_holder"].Visible = false
                         end
                     end)
                 end
