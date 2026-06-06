@@ -742,7 +742,11 @@
                 -- library:tween(items[ "tab_holder" ], {Size = dim2(1, -196, 1, -81)}, Enum.EasingStyle.Quad, 0.4)
                 -- cfg.tween = 
                 
-                library[ "items" ].Enabled = bool
+                library["items"].Enabled = bool
+
+                if library.watermark_instance and library.watermark_instance.items["root"] then
+                    library.watermark_instance.items["root"].Visible = library.watermark_instance.visible
+                end
             end 
                 
             return setmetatable(cfg, library)
