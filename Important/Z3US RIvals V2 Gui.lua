@@ -3897,7 +3897,7 @@
 
         function library:init_config(window) 
             window:seperator({name = "Settings"})
-            local main = window:tab({name = "Configs", tabs = {"Main"}})
+            local main = window:tab({name = "Settings", icon = "rbxassetid://125396339381135", tabs = {"Main"}})
             local column = main:column({})
             local section = column:section({name = "Settings", side = "right", size = 1, default = true, icon = "rbxassetid://129380150574313"})
             section:textbox({name = "Config name:", flag = "config_name_text"})
