@@ -743,10 +743,6 @@
                 -- cfg.tween = 
                 
                 library["items"].Enabled = bool
-
-                if library.watermark_instance and library.watermark_instance.items["root"] then
-                    library.watermark_instance.items["root"].Visible = library.watermark_instance.visible
-                end
             end 
                 
             return setmetatable(cfg, library)
@@ -3407,6 +3403,16 @@
         function library:watermark(options)
             options = options or {}
 
+            if not library.watermark_gui then
+                library.watermark_gui = library:create("ScreenGui", {
+                    Parent = coregui;
+                    Name = "\0";
+                    Enabled = true;
+                    ZIndexBehavior = Enum.ZIndexBehavior.Global;
+                    IgnoreGuiInset = true;
+                })
+            end
+
             local cfg = {
                 name = options.name or "Z3US";
                 suffix = options.suffix or "Rivals";
@@ -3425,7 +3431,7 @@
             local items = cfg.items
 
             items["root"] = library:create("Frame", {
-                Parent = library["items"];
+                Parent = library.watermark_gui;
                 Name = "\0";
                 Position = cfg.position;
                 Size = dim2(0, 200, 0, 28);
