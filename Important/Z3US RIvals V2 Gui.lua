@@ -795,7 +795,7 @@
                         BorderColor3 = rgb(0, 0, 0);
                         Parent = items[ "button" ];
                         AnchorPoint = vec2(0, 0.5);
-                        Image = "http://www.roblox.com/asset/?id=6034767608";
+                        Image = cfg.icon;
                         BackgroundTransparency = 1;
                         Position = dim2(0, 10, 0.5, 0);
                         Name = "\0";
@@ -3944,10 +3944,10 @@
             end})
             section:colorpicker({name = "Menu Accent", callback = function(color, alpha) library:update_theme("accent", color) end, color = themes.preset.accent})
             section:toggle({
-                name     = "Watermark",
-                flag     = "watermark_visible",
-                type     = "toggle",
-                default  = true,
+                name = "Watermark",
+                flag = "watermark_visible",
+                type = "toggle",
+                default = true,
                 callback = function(bool)
                     if library.watermark_instance then
                         library.watermark_instance.set_visible(bool)
