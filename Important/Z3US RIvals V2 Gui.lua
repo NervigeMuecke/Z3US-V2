@@ -3400,6 +3400,291 @@
             return setmetatable(cfg, library)
         end 
 
+        function library:watermark(options)
+            options = options or {}
+
+            local cfg = {
+                name = options.name or "Z3US";
+                suffix = options.suffix or "Rivals";
+                tag = options.tag or nil;
+                logo = options.logo or nil;
+                logo_size = options.logo_size or 18;
+                position = options.position or dim2(0, 20, 0, 20);
+                draggable = options.draggable ~= false;
+                show_fps = options.show_fps ~= false;
+                show_ping = options.show_ping ~= false;
+                visible = true;
+                items = {};
+            }
+
+            library.watermark_instance = cfg
+            local items = cfg.items
+
+            items["root"] = library:create("Frame", {
+                Parent = library["items"];
+                Name = "\0";
+                Position = cfg.position;
+                Size = dim2(0, 200, 0, 28);
+                BackgroundColor3 = rgb(14, 14, 16);
+                BorderSizePixel = 0;
+                ClipsDescendants = false;
+                ZIndex = 50;
+            })
+
+            library:create("UICorner", {
+                Parent = items["root"];
+                CornerRadius = dim(0, 7);
+            })
+
+            library:create("UIStroke", {
+                Color = rgb(30, 30, 35);
+                Parent = items["root"];
+                ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+                Thickness = 1;
+            })
+
+            items["row"] = library:create("Frame", {
+                Parent = items["root"];
+                Name = "\0";
+                BackgroundTransparency = 1;
+                Size = dim2(0, 0, 0, 28);
+                AutomaticSize = Enum.AutomaticSize.X;
+                BorderSizePixel = 0;
+            })
+
+            library:create("UIListLayout", {
+                Parent = items["row"];
+                FillDirection = Enum.FillDirection.Horizontal;
+                VerticalAlignment = Enum.VerticalAlignment.Center;
+                Padding = dim(0, 8);
+                SortOrder = Enum.SortOrder.LayoutOrder;
+            })
+
+            library:create("UIPadding", {
+                Parent = items["row"];
+                PaddingLeft = dim(0, 10);
+                PaddingRight = dim(0, 10);
+            })
+
+            local function divider(order)
+                library:create("Frame", {
+                    Parent = items["row"];
+                    Name = "\0";
+                    Size = dim2(0, 1, 0, 14);
+                    BackgroundColor3 = rgb(45, 45, 50);
+                    BorderSizePixel = 0;
+                    LayoutOrder = order;
+                    ZIndex = 50;
+                })
+            end
+
+            local function stat_label(txt, order)
+                return library:create("TextLabel", {
+                    Parent = items["row"];
+                    Name = "\0";
+                    FontFace = fonts.small;
+                    Text = txt;
+                    TextColor3 = rgb(110, 110, 115);
+                    TextSize = 13;
+                    Size = dim2(0, 50, 0, 18);
+                    AutomaticSize = Enum.AutomaticSize.X;
+                    BackgroundTransparency = 1;
+                    TextXAlignment = Enum.TextXAlignment.Left;
+                    BorderSizePixel = 0;
+                    LayoutOrder = order;
+                    ZIndex = 50;
+                })
+            end
+
+            if cfg.logo then
+                items["logo"] = library:create("ImageLabel", {
+                    Parent = items["row"];
+                    Name = "\0";
+                    Image = cfg.logo;
+                    Size = dim2(0, cfg.logo_size, 0, cfg.logo_size);
+                    BackgroundTransparency = 1;
+                    BorderSizePixel = 0;
+                    LayoutOrder = 0;
+                    ImageColor3 = themes.preset.accent;
+                    ZIndex = 50;
+                })
+                library:apply_theme(items["logo"], "accent", "ImageColor3")
+            end
+            local accent = themes.preset.accent
+            items["name_label"] = library:create("TextLabel", {
+                Parent = items["row"];
+                Name = "\0";
+                FontFace = fonts.font;
+                Text = cfg.name;
+                TextColor3 = accent;
+                TextSize = 14;
+                Size = dim2(0, 40, 0, 18);
+                AutomaticSize = Enum.AutomaticSize.X;
+                BackgroundTransparency = 1;
+                TextXAlignment = Enum.TextXAlignment.Left;
+                BorderSizePixel = 0;
+                LayoutOrder = 1;
+                ZIndex = 50;
+            })
+            library:apply_theme(items["name_label"], "accent", "TextColor3")
+
+            divider(2)
+
+            items["suffix_label"] = library:create("TextLabel", {
+                Parent = items["row"];
+                Name = "\0";
+                FontFace = fonts.font;
+                Text = cfg.suffix;
+                TextColor3 = rgb(255, 255, 255);
+                TextSize = 14;
+                Size = dim2(0, 40, 0, 18);
+                AutomaticSize = Enum.AutomaticSize.X;
+                BackgroundTransparency = 1;
+                TextXAlignment = Enum.TextXAlignment.Left;
+                BorderSizePixel = 0;
+                LayoutOrder = 3;
+                ZIndex = 50;
+            })
+
+            if cfg.show_fps then
+                divider(10)
+                items["fps"] = stat_label("-- FPS", 11)
+            end
+
+            if cfg.show_ping then
+                divider(20)
+                items["ping"] = stat_label("--ms", 21)
+            end
+
+            if cfg.tag then
+                divider(90)
+
+                items["tag_bg"] = library:create("Frame", {
+                    Parent = items["row"];
+                    Name = "\0";
+                    Size = dim2(0, 0, 0, 18);
+                    AutomaticSize = Enum.AutomaticSize.X;
+                    BackgroundColor3 = rgb(20, 20, 24);
+                    BorderSizePixel = 0;
+                    LayoutOrder = 91;
+                    ZIndex = 50;
+                })
+                library:create("UICorner", { Parent = items["tag_bg"]; CornerRadius = dim(0, 4); })
+                library:create("UIStroke", {
+                    Color = rgb(35, 35, 42);
+                    Parent = items["tag_bg"];
+                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+                    Thickness = 1;
+                })
+                items["tag_label"] = library:create("TextLabel", {
+                    Parent = items["tag_bg"];
+                    Name = "\0";
+                    FontFace = fonts.small;
+                    Text = cfg.tag;
+                    TextColor3 = themes.preset.accent;
+                    TextSize = 12;
+                    Size = dim2(0, 0, 1, 0);
+                    AutomaticSize = Enum.AutomaticSize.X;
+                    BackgroundTransparency = 1;
+                    BorderSizePixel = 0;
+                    ZIndex = 50;
+                })
+                library:apply_theme(items["tag_label"], "accent", "TextColor3")
+                library:create("UIPadding", {
+                    Parent = items["tag_label"];
+                    PaddingLeft = dim(0, 5);
+                    PaddingRight = dim(0, 5);
+                    PaddingTop = dim(0, 2);
+                    PaddingBottom = dim(0, 2);
+                })
+            end
+
+            task.defer(function()
+                if items["root"] and items["row"] then
+                    items["root"].Size = dim2(0, items["row"].AbsoluteSize.X, 0, 28)
+                end
+            end)
+
+            if cfg.draggable then
+                local dragging = false
+                local drag_start = Vector2.new()
+                local start_pos = cfg.position
+
+                items["root"].InputBegan:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        dragging = true
+                        drag_start = Vector2.new(input.Position.X, input.Position.Y)
+                        start_pos = items["root"].Position
+                    end
+                end)
+                items["root"].InputEnded:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        dragging = false
+                    end
+                end)
+                library:connection(uis.InputChanged, function(input)
+                    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                        items["root"].Position = dim2(
+                            0, start_pos.X.Offset + (input.Position.X - drag_start.X),
+                            0, start_pos.Y.Offset + (input.Position.Y - drag_start.Y)
+                        )
+                    end
+                end)
+            end
+
+            function cfg.set_visible(bool)
+                cfg.visible = bool
+                items["root"].Visible = bool
+            end
+
+            function cfg.set_text(name, suffix, tag)
+                cfg.name = name or cfg.name
+                cfg.suffix = suffix or cfg.suffix
+                items["name_label"].Text = cfg.name
+                items["suffix_label"].Text = cfg.suffix
+                if tag and items["tag_label"] then
+                    cfg.tag = tag
+                    items["tag_label"].Text = tag
+                end
+                task.defer(function()
+                    if items["root"] and items["row"] then
+                        items["root"].Size = dim2(0, items["row"].AbsoluteSize.X, 0, 28)
+                    end
+                end)
+            end
+
+            if cfg.show_fps or cfg.show_ping then
+                local tick_acc = 0
+                local frame_count = 0
+                library:connection(run.RenderStepped, function(dt)
+                    if not cfg.visible then return end
+                    frame_count = frame_count + 1
+                    tick_acc = tick_acc + dt
+                    if tick_acc < 0.5 then return end
+
+                    local fps = math.floor(frame_count / tick_acc)
+                    tick_acc = 0
+                    frame_count = 0
+
+                    if items["fps"] then
+                        local c = fps >= 55 and rgb(80, 200, 120) or fps >= 30 and rgb(220, 180, 60) or rgb(200, 70, 70)
+                        items["fps"].Text = fps .. " FPS"
+                        items["fps"].TextColor3 = c
+                    end
+
+                    if items["ping"] then
+                        local ok, raw = pcall(function() return stats.Network.ServerStatsItem["Data Ping"]:GetValue() end)
+                        local ms = ok and math.floor(raw) or 0
+                        local c = ms <= 60 and rgb(80, 200, 120) or ms <= 120 and rgb(220, 180, 60) or rgb(200, 70, 70)
+                        items["ping"].Text = ms .. "ms"
+                        items["ping"].TextColor3 = c
+                    end
+                end)
+            end
+
+            return setmetatable(cfg, library)
+        end
+
         function library:settings(options)  
             local cfg = {
                 open = false; 
@@ -3613,11 +3898,6 @@
         function library:init_config(window) 
             window:seperator({name = "Settings"})
             local main = window:tab({name = "Configs", tabs = {"Main"}})
-            
-            local column = main:column({})
-            local section = column:section({name = "Configs", size = 1, default = true, icon = "rbxassetid://139628202576511"})
-            config_holder = section:list({options = {"Report", "This", "Error", "To", "Finobe"}, callback = function(option) end, flag = "config_name_list"}); library:update_config_list()
-            
             local column = main:column({})
             local section = column:section({name = "Settings", side = "right", size = 1, default = true, icon = "rbxassetid://129380150574313"})
             section:textbox({name = "Config name:", flag = "config_name_text"})
@@ -3663,7 +3943,22 @@
                 end
             end})
             section:colorpicker({name = "Menu Accent", callback = function(color, alpha) library:update_theme("accent", color) end, color = themes.preset.accent})
-            section:keybind({name = "Menu Bind", key = Enum.KeyCode.RightShift, callback = function(bool) window.toggle_menu(bool) end, default = true})
+            section:toggle({
+                name     = "Watermark",
+                flag     = "watermark_visible",
+                type     = "toggle",
+                default  = true,
+                callback = function(bool)
+                    if library.watermark_instance then
+                        library.watermark_instance.set_visible(bool)
+                    end
+                end
+            })
+            section:keybind({name = "Menu Bind", key = Enum.KeyCode.RightShift, callback = function(bool) window.toggle_menu(bool) end, default = true})    
+              
+            local column = main:column({})
+            local section = column:section({name = "Configs", size = 1, default = true, icon = "rbxassetid://139628202576511"})
+            config_holder = section:list({options = {"Report", "This", "Error", "To", "The", "Admins"}, callback = function(option) end, flag = "config_name_list"}); library:update_config_list()
         end
     --
 
