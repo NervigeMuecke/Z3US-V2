@@ -35,7 +35,7 @@
 
     local camera = ws.CurrentCamera
     local lp = players.LocalPlayer 
-    local mouse = uis:GetMouseLocation()
+    local mouse = lp:GetMouse() 
     local gui_offset = gui_service:GetGuiInset().Y
 
     local max = math.max 
@@ -2825,6 +2825,7 @@
             end
             
             function cfg.update_color() 
+                local mouse = uis:GetMouseLocation() 
                 local offset = vec2(mouse.X, mouse.Y - gui_offset) 
 
                 if dragging_sat then	
