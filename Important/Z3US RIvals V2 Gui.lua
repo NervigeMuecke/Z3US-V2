@@ -3026,6 +3026,7 @@
 
                 hold_instances = {},
                 items = {};
+                seperator = options.seperator or options.Seperator or false;
             }
 
             flags[cfg.flag] = {
@@ -3339,6 +3340,18 @@
                     end
                 end
             end)
+
+            if cfg.seperator then 
+                library:create( "Frame" , {
+                    AnchorPoint = vec2(0, 1);
+                    Parent = self.items[ "elements" ];
+                    Position = dim2(0, 0, 1, 0);
+                    BorderColor3 = rgb(0, 0, 0);
+                    Size = dim2(1, 1, 0, 1);
+                    BorderSizePixel = 0;
+                    BackgroundColor3 = rgb(36, 36, 37)
+                });
+            end 
             
             cfg.set({mode = cfg.mode, active = cfg.active, key = cfg.key})           
             config_flags[cfg.flag] = cfg.set
