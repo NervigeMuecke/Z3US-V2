@@ -2282,6 +2282,18 @@
             
             cfg.refresh_options(cfg.options)
             cfg.set(cfg.default)
+
+            if cfg.seperator then 
+                library:create( "Frame" , {
+                    AnchorPoint = vec2(0, 1);
+                    Parent = self.items[ "elements" ];
+                    Position = dim2(0, 0, 1, 0);
+                    BorderColor3 = rgb(0, 0, 0);
+                    Size = dim2(1, 1, 0, 1);
+                    BorderSizePixel = 0;
+                    BackgroundColor3 = rgb(36, 36, 37)
+                });
+            end 
                 
             return setmetatable(cfg, library)
         end
