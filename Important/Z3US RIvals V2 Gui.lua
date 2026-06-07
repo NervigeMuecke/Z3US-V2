@@ -2205,16 +2205,9 @@
                     option:Destroy() 
                 end
                 
-                cfg.option_instances = {}
+                cfg.option_instances = {} 
 
-                local cleanList = {}
-                for _, option in list do
-                    if type(option) == "string" then
-                        table.insert(cleanList, option)
-                    end
-                end
-
-                for _, option in cleanList do 
+                for _, option in list do 
                     local button = cfg.render_option(option)
                     insert(cfg.option_instances, button)
                     
@@ -2241,14 +2234,21 @@
 
                 task.wait()
                 cfg.y_size = items[ "dropdown_layout" ].AbsoluteContentSize.Y or 0
+            end 
+
+            function cfg.SetValues(new_values)
+                if new_values then
+                    cfg.options = new_values
+                    cfg.refresh_options(new_values)
+                end
             end
 
-            function cfg.refresh_items(list, newDefault)
-                cfg.refresh_options(list)
-                task.defer(function()
-                    local value = newDefault or (type(list[1]) == "string" and list[1]) or ""
-                    cfg.set(value)
-                end)
+            function cfg.SetValue(value)
+                cfg.set(value)
+                if not cfg.multi then
+                    cfg.set_visible(false)
+                    cfg.open = false
+                end
             end
 
             flags[cfg.flag] = {} 
