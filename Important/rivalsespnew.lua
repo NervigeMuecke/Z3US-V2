@@ -1,8 +1,8 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2/refs/heads/main/Important/drawinglib.lua"))()
 
-local players = game:GetService("Players")
+local players = cloneref(game:GetService("Players"))
 local client = players.LocalPlayer
-local runService = game:GetService("RunService")
+local runService = cloneref(game:GetService("RunService"))
 local camera = workspace.CurrentCamera
 local settings = {
     enabled = false,
