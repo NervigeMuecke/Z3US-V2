@@ -2193,7 +2193,7 @@
                 end
 
                 items[ "sub_text" ].Text = isTable and concat(selected, ", ") or selected[1] or ""
-                flags[cfg.flag] = isTable and selected or selected[1]
+                flags[cfg.flag] = isTable and selected or (selected[1] or nil)
                 
                 cfg.callback(flags[cfg.flag]) 
             end
@@ -2222,7 +2222,7 @@
                             end
                             
                             cfg.set(cfg.multi_items)
-                            library:tween(button, {TextColor3 = themes.preset.accent}, Enum.EasingStyle.Quad, 0.12)
+                            library:tween(button, {TextColor3 = selected_index and rgb(72, 72, 73) or themes.preset.accent}, Enum.EasingStyle.Quad, 0.12)
                         else 
                             cfg.set(button.Text)
                             cfg.set_visible(false)
