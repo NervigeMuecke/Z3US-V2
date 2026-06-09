@@ -3723,7 +3723,7 @@
                     end
 
                     if items["ping"] then
-                        local ok, raw = pcall(function() return stats.Network.ServerStatsItem["Data Ping"]:GetValue() end)
+                        local ok, raw = pcall(function() return lp:GetNetworkPing()*1000 end)
                         local ms = ok and math.floor(raw) or 0
                         local c = ms <= 60 and rgb(80, 200, 120) or ms <= 120 and rgb(220, 180, 60) or rgb(200, 70, 70)
                         items["ping"].Text = ms .. "ms"
