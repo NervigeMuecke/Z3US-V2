@@ -3,6 +3,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NervigeMuecke/Z3US-V2
 local players = cloneref(game:GetService("Players"))
 local client = players.LocalPlayer
 local runService = cloneref(game:GetService("RunService"))
+local workspace = cloneref(workspace)
 local camera = workspace.CurrentCamera
 local settings = {
     enabled = false,
