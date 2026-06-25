@@ -39,6 +39,7 @@ getgenv().Library = {
     ['Table'] = {
         ['Enabled'] = false,
         ['ShowLocalPlayer'] = false,
+        ['TeamCheck'] = false,
         ['Distance'] = 250,
         ['RefreshRate'] = 60,
         ['Font'] = 'TahomaBold',
@@ -75,7 +76,7 @@ getgenv().Library = {
                 ['Rotation'] = 90,
                 ['Top'] = Color3.fromRGB(19, 0, 255),
                 ['Bot'] = Color3.fromRGB(0, 0, 0),
-                ['Transparency'] = {0.65, 0.65},
+                ['Transparency'] = {1, 0.65},
             },
         },
 
@@ -219,6 +220,12 @@ Library.Holder = Library:CreateObjects("ScreenGui", {
     DisplayOrder = 10000,
     IgnoreGuiInset = true,
 })
+
+function Library:IsTeammate(player)
+    if not player or not player.Character then return false end
+    local root = player.Character:FindFirstChild("HumanoidRootPart")
+    return root and root:FindFirstChild("TeammateLabel") ~= nil
+end
 
 function Library:InitEsp(Data)
     local Objects = Data.Objects
@@ -991,6 +998,10 @@ function Library:AddTarget(Player)
         return
     end;
 
+    if Table['TeamCheck'] and self:IsTeammate(Player) then
+        return
+    end
+
     local Data = {
         ['Player'] = Player,
         ['Objects'] = {},
@@ -1112,7 +1123,7 @@ function Library:AddTarget(Player)
         local viewModels = Workspace:FindFirstChild("ViewModels")
         if not viewModels then return "None" end
 
-        for _, model in ipairs(viewModels:GetChildren()) do
+        for _, model in viewModels:GetChildren() do
             if string.match(model.Name, "^" .. player.Name .. " -") then
                 local parts = {}
                 for part in string.gmatch(model.Name, "[^-]+") do
@@ -1308,6 +1319,15 @@ function Library:RemoveTarget(Player)
 
     Clear(Data['Objects']);
     self['Cache'][Player] = nil;
+end
+
+function Library:RefreshTargets()
+    for player in self.Cache do
+        self:RemoveTarget(player)
+    end
+    for _, player in Players:GetPlayers() do
+        self:AddTarget(player)
+    end
 end
 
 function Library:Update(Player, Data)
