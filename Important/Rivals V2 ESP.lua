@@ -39,7 +39,7 @@ getgenv().Library = {
     ['Table'] = {
         ['Enabled'] = false,
         ['ShowLocalPlayer'] = false,
-        ['TeamCheck'] = true,
+        ['TeamCheck'] = false,
         ['Distance'] = 250,
         ['RefreshRate'] = 60,
         ['Font'] = 'TahomaBold',
@@ -76,7 +76,7 @@ getgenv().Library = {
                 ['Rotation'] = 90,
                 ['Top'] = Color3.fromRGB(19, 0, 255),
                 ['Bot'] = Color3.fromRGB(0, 0, 0),
-                ['Transparency'] = {1, 0.65},
+                ['Transparency'] = {0.65, 0.65},
             },
         },
 
