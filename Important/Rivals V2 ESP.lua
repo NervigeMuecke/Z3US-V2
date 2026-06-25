@@ -37,16 +37,16 @@ getgenv().Library = {
     ['Connections'] = {},
 
     ['Table'] = {
-        ['Enabled'] = true,
+        ['Enabled'] = false,
         ['ShowLocalPlayer'] = false,
-        ['Distance'] = 1000,
+        ['Distance'] = 250,
         ['RefreshRate'] = 60,
         ['Font'] = 'TahomaBold',
         ['FontSize'] = 12,
         ['FontType'] = 'none',
 
         ['Boxes'] = {
-            ['Enabled'] = true,
+            ['Enabled'] = false,
             ['DynamicBoxes'] = true,
             ['Type'] = "2D",
             ['Rotation'] = 90,
@@ -71,7 +71,7 @@ getgenv().Library = {
             },
 
             ['Filled'] = {
-                ['Enabled'] = true,
+                ['Enabled'] = false,
                 ['Rotation'] = 90,
                 ['Top'] = Color3.fromRGB(19, 0, 255),
                 ['Bot'] = Color3.fromRGB(0, 0, 0),
@@ -81,7 +81,7 @@ getgenv().Library = {
 
         ['Bars'] = {
             ['Health Bar'] = {
-                ['Enabled'] = true,
+                ['Enabled'] = false,
                 ['Top'] = Color3.fromRGB(0, 255, 0),
                 ['Mid'] = Color3.fromRGB(255, 170, 0),
                 ['Bot'] = Color3.fromRGB(255, 0, 0),
@@ -97,17 +97,17 @@ getgenv().Library = {
 
         ['Texts'] = {
             ['Name'] = {
-                ['Enabled'] = true,
+                ['Enabled'] = false,
                 ['Color'] = Color3.fromRGB(255, 255, 255),
             },
 
             ['Distance'] = {
-                ['Enabled'] = true,
+                ['Enabled'] = false,
                 ['Color'] = Color3.fromRGB(255, 255, 255),
             },
 
             ['Weapon'] = {
-                ['Enabled'] = true,
+                ['Enabled'] = false,
                 ['Color'] = Color3.fromRGB(255, 255, 255),
             },
         },
