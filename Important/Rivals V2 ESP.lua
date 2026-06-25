@@ -1184,9 +1184,9 @@ function Library:AddTarget(Player)
             Data['FallingActive'] = false;
             Data['SwimmingActive'] = false;
 
-            Objects['WalkFlag'].Visible = false;
-            Objects['JumpFlag'].Visible = false;
-            Objects['SwimmingFlag'].Visible = false;
+            --Objects['WalkFlag'].Visible = false;
+            --Objects['JumpFlag'].Visible = false;
+            --Objects['SwimmingFlag'].Visible = false;
 
             Data['Conns']['MoveDir'] = Humanoid:GetPropertyChangedSignal('MoveDirection'):Connect(function()
                 local Walking = Humanoid.MoveDirection ~= ZeroVector3;
